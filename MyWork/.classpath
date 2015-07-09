@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry exported="true" kind="lib" path="libs/prefuse.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/reallib/httpclient-4.2.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/reallib/httpcore-4.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/reallib/jsoup-1.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/reallib/jxl.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/reallib/mysql-connector-java-5.1.35-bin.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/reallib/poi-3.8-20120326.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/reallib/poi-ooxml-3.8-20120326.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/reallib/selenium-server-standalone-2.44.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/reallib/weka-src.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/reallib/weka.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/FileManipulation"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
