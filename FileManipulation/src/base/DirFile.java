@@ -28,8 +28,9 @@ public class DirFile {
 		CsvFile.directSave(getFileNamesFromDirectory(openDir), outFile);
 	}
 
-	//读取某个目录下的所有文件的名字。
-	//只有文件名，没有扩展名，没有路径。
+	// 读取某个目录下的所有文件的名字。
+	// 只有文件名，没有扩展名，没有路径。
+	// 只能读取文件名（不能读取文件夹的名字）
 	static public Set<String> getFileNamesFromDirectory(String dir){
 		Set<String> nameWithoutExt=new HashSet<String>();
 		File f = new File(dir);
@@ -48,23 +49,43 @@ public class DirFile {
 	}
 	
 	// 读取某个目录下的所有文件的名字。（顺序）
-		// 只有文件名，没有扩展名，没有路径。
-		static public ArrayList<String> getFileNamesFromDirectorybyArraylist(String dir) {
-			ArrayList<String> nameWithoutExt = new ArrayList<String>();
-			File f = new File(dir);
-			File[] childs = f.listFiles();
-			System.out.println("读取目录……  " + dir);
-			for (File file : childs) {
-				String fileName = file.getName();
-				int pos = fileName.lastIndexOf(".");
-				if (pos > 1) {
-					String realName = fileName.substring(0, pos); //
-					nameWithoutExt.add(realName);
-				}
+	// 只有文件名，没有扩展名，没有路径。
+	// 只能读取文件名（不能读取文件夹的名字）
+	static public ArrayList<String> getFileNamesFromDirectorybyArraylist(String dir) {
+		ArrayList<String> nameWithoutExt = new ArrayList<String>();
+		File f = new File(dir);
+		File[] childs = f.listFiles();
+		System.out.println("读取目录……  " + dir);
+		for (File file : childs) {
+			String fileName = file.getName();
+			int pos = fileName.lastIndexOf(".");
+			if (pos > 1) {
+				String realName = fileName.substring(0, pos); //
+				nameWithoutExt.add(realName);
 			}
-			System.out.println("acqure name，总数=" + nameWithoutExt.size());
-			return nameWithoutExt;
 		}
+		System.out.println("acqure name，总数=" + nameWithoutExt.size());
+		return nameWithoutExt;
+	}
+	
+	// 读取某个目录下的所有文件的名字。（顺序）
+	// 只有文件名，没有扩展名，没有路径。
+	// 只能读取文件名（不能读取文件夹的名字）
+	static public ArrayList<String> getFolderFileNamesFromDirectorybyArraylist(String dir) {
+		ArrayList<String> nameFolder = new ArrayList<String>();
+		File f = new File(dir);
+		File[] childs = f.listFiles();
+		System.out.println("读取目录……  " + dir);
+		for (File file : childs) {
+			String fileName = file.getName();
+			if (!fileName.contains(".")) {
+				String realName = fileName; 
+				nameFolder.add(realName);
+			}
+		}
+		System.out.println("acqure name，总数=" + nameFolder.size());
+		return nameFolder;
+	}
 	
 	//1)保存源文件的回车。
 	//2)没有最后一个回车。

@@ -27,14 +27,18 @@ import jxl.write.WritableWorkbook;
 public class keywordmatch {
 
 	public static void main(String[] args) {
-//		try {
-//			long start = System.currentTimeMillis();
-//			filtering("test");
-//			long end = System.currentTimeMillis();
-//			System.out.println("总共耗时： " + (end - start) / 1000 + "秒...");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			long start = System.currentTimeMillis();
+			filtering("test");
+//			keywordmatch t = new keywordmatch();
+//			t.matchkeywordnotdelete("Binomial+distribution");
+//			t.matchkeyworddelete("Binomial+distribution");
+//			t.matchkeywordandlength("Binomial+distribution");
+			long end = System.currentTimeMillis();
+			System.out.println("总共耗时： " + (end - start) / 1000 + "秒...");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

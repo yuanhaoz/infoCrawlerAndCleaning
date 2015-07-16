@@ -39,8 +39,9 @@ public class keywordcatalogdesign {
 	}
 
 	/**
-	 * 实现功能：根据关键词，定位到相应关键词目录 用于存放“主题”、
-	 * 			“问题”和“作者”页面 输入是关键词，输出是生成相应文件夹
+	 * 实现功能：根据关键词，定位到相应关键词目录 
+	 * 			用于存放“主题”、“问题”和“作者”页面 
+	 * 			输入是关键词，输出是文件路径
 	 * 
 	 * @param keyword
 	 */
@@ -63,8 +64,9 @@ public class keywordcatalogdesign {
 	}
 
 	/**
-	 * 实现功能：根据关键词，定位到相应关键词目录 用于存放“主题”、
-	 * 			“问题”和“作者”页面 输入是关键词，输出是生成相应文件夹
+	 * 实现功能：根据关键词，定位到相应关键词目录 
+	 * 			用于存放“主题”、“问题”和“作者”页面 
+	 * 			输入是关键词，输出是文件路径
 	 * （输入包含课程名）
 	 * @param keyword
 	 */
@@ -75,6 +77,29 @@ public class keywordcatalogdesign {
 		for (int j = 0; j < a.size(); j++) {
 			String testkeyword = a.get(j);
 			System.out.println("关键词：" + keyword);
+			if (keyword.equals(testkeyword)) {
+				keywordcatalog = catalog + keyword + "/";
+			}
+		}
+		return keywordcatalog;
+	}
+	
+	/**
+	 * 实现功能：根据关键词，定位到相应关键词目录 
+	 * 			用于存放标注过的数据
+	 * 			输入是关键词，输出是对应路径
+	 * 
+	 * @param keyword
+	 */
+	public static String getTagKeywordCatalog(String keyword) {
+		String keywordcatalog = "";
+		String catalog = "file/标注术语/";
+		
+		// 读取所有文件名
+		ArrayList<String> a = DirFile.getFolderFileNamesFromDirectorybyArraylist(catalog); 
+		for (int j = 0; j < a.size(); j++) {
+			String testkeyword = a.get(j);
+			// System.out.println("关键词：" + keyword);
 			if (keyword.equals(testkeyword)) {
 				keywordcatalog = catalog + keyword + "/";
 			}
