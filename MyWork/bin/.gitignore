@@ -1,7 +1,7 @@
-/visualization
-/dataCollection
-/dataFiltering
-/informationExtraction
-/prefuse
-/basic
-/tagOperation
+/basic/
+/dataCollection/
+/dataFiltering/
+/informationExtraction/
+/prefuse/
+/tagOperation/
+/visualization/
