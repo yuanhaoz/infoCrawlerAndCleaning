@@ -24,7 +24,6 @@ public class mysqloperationexample {
      * */
     @Test
     public void insert() {
-        // TODO Auto-generated method stub
          
         //创建sql语句
         sql = "insert into user(name, password) values(?,?)";
