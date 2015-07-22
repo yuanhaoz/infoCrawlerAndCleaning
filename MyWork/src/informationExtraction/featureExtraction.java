@@ -222,7 +222,7 @@ public class featureExtraction {
 	 * 解析标签形式：
 	 * @param doc,n
 	 */
-	public static int AnswerUpvotes(Document doc, int n) {
+	public static String AnswerUpvotes(Document doc, int n) {
 		Elements answer_voters = doc.select("div.Answer")
 				.select("div.primary_item").select("a[class]").select("span");
 		String answer_voters_s = answer_voters.get(n).text();
@@ -230,7 +230,7 @@ public class featureExtraction {
 		if (answer_voters_s.equals("0")) {
 			System.out.println("支持票数为0，请注意！！！");
 		}
-		return Integer.parseInt(answer_voters_s);
+		return answer_voters_s;
 	}
 
 	/**

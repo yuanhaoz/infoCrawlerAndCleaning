@@ -46,6 +46,8 @@ public class informationextractiontoexcel{
 	 */
 	public static void realize() throws Exception {
 		extraction("Computer_network");
+		extraction("Data_mining");
+		extraction("Data_structure");
 	}
 	
 	/**
@@ -59,9 +61,11 @@ public class informationextractiontoexcel{
 		Iterator<String> it = a.iterator();   //设置迭代器
 		while(it.hasNext()){                  //判断是否有下一个
 			long start = System.currentTimeMillis();
+			
 			String keyword = it.next();       //得到关键词
 			int pagelength = QuestionPageNumber(keyword);      
 			Down2Excel(keyword, pagelength);                   //解析问题页面和作者页面
+			
 			long end = System.currentTimeMillis();
 			System.out.println("解析" + keyword + "的所有信息用时：" + (end - start)/1000 + "秒...");
 		}
@@ -91,12 +95,16 @@ public class informationextractiontoexcel{
 	 * @param course
 	 */
 	public static void Down2Excel(String keyword, int pagelength) throws Exception {
+		
+		//建立保存目录
 		String catalog = keywordcatalogdesign.GetKeywordCatalog(keyword);
 		String filepath = catalog + keyword + "-tag.xls";
 		WritableWorkbook workbook = Workbook.createWorkbook(new File(filepath));
 		WritableSheet sheet = workbook.createSheet("信息抽取", 0);
 		initaltitle(sheet);
 		WritableCellFormat wcf_center = ExcelSet.setCenterText();   //设置单元格正文格式
+		
+		//存放信息
 		int number = 1;
 		for (int i = 0; i < pagelength; i++) {
 			String path = catalog + keyword + i + ".html";
@@ -104,6 +112,8 @@ public class informationextractiontoexcel{
 			if (!file.exists()) {
 				System.out.println(path + "  不存在");
 			} else {
+				
+				//开始解析问题页面，将问题的有关信息填入表格之中
 				System.out.println("\n开始解析： " + path);
 				Document doc = JsoupParse.parsePathText(path);
 				ArrayList<String> titlelist = new ArrayList<String>();
@@ -124,38 +134,54 @@ public class informationextractiontoexcel{
 				for(int j = 0; j < 13; j++){
 					sheet.addCell(new Label(j, number, titlelist.get(j), wcf_center));
 				}
-					
+				
 				sheet.setRowView(number, 1300, false); // 设置行高
 				sheet.setColumnView(0, 20);
 				sheet.setColumnView(1, 60);
+				
+				//将问题下的回答和作者的信息填入表中
 				int realanswernumber = featureExtraction.CountRealAnswerNumber(doc);
 				for (int m = number; m < number + realanswernumber; m++) {
+					
 					sheet.setRowView(m + 1, 1300, false); // 设置行高
-					infolist.add(keyword + i + "_" + (m - number + 1) + " ");
-					infolist.add(featureExtraction.AnswerContent(doc, m - number));
-					infolist.add("0");
-					infolist.add(featureExtraction.AnswerUpvotes(doc, m - number) + "");
-					infolist.add(featureExtraction.AnswerURLs(doc, m - number));
-					infolist.add(featureExtraction.AnswerCommentNumbers(doc, m - number));
-//					作者网页信息抽取
+					String answercontent = featureExtraction.AnswerContent(doc, m - number);
+					int contentlength = featureExtraction.AnswerContentWordLength(doc, m - number);   // 单词长度
+					String upvote = featureExtraction.AnswerUpvotes(doc, m - number);              // 支持票数 
+					String url = featureExtraction.AnswerURLs(doc, m - number);                    // 链接有无
+					String comment = featureExtraction.AnswerCommentNumbers(doc, m - number);     // 评论数量
+					
+					String follower = null;
+					String info = null;
+					String know = null;
+					String answer = null;
+					
 					String authorpath = catalog + keyword + i + "_author_" + (m - number) + ".html";
 					File file1 = new File(authorpath);
 					if(!file1.exists()){
 						System.out.println(authorpath + "   不存在");
 					}else{
 						Document doc1 = JsoupParse.parsePathText(authorpath);  //解析作者页面路径
-						infolist.add(featureExtraction.AuthorFollowers(doc1, m - number)); // 作者粉丝
-						infolist.add(featureExtraction.AuthorInfo(doc, m - number)); // 作者简历
-						infolist.add(featureExtraction.AuthorKnowAbout(doc1, m - number)); // 作者领域
-						infolist.add(featureExtraction.AuthorAnswers(doc1, m - number)); // 回答总数
-						infolist.add(featureExtraction.AnswerContentWordLength(doc, m - number) + "");
-						infolist.add("1");
-						infolist.add(i + "");
+						
+						follower = featureExtraction.AuthorFollowers(doc1, m - number);   // 作者粉丝
+						info = featureExtraction.AuthorInfo(doc, m - number);            // 作者简历
+						know = featureExtraction.AuthorKnowAbout(doc1, m - number);       // 作者领域
+						answer = featureExtraction.AuthorAnswers(doc1, m - number);       // 回答总数
 					}
-					for(int j = 0; j < 13; j++){
-						sheet.addCell(new Label(j, m + 1, infolist.get(j), wcf_center));
-//						System.out.println(infolist.get(j));
-					}	
+					
+					sheet.addCell(new Label(0, m + 1, keyword + i + "_" + (m - number + 1) + " ",wcf_center));
+					sheet.addCell(new Label(1, m + 1, answercontent, wcf_center));
+					sheet.addCell(new Label(2, m + 1, "0", wcf_center));
+					sheet.addCell(new Label(3, m + 1, upvote, wcf_center));
+					sheet.addCell(new Label(4, m + 1, url, wcf_center));
+					sheet.addCell(new Label(5, m + 1, comment, wcf_center));
+					sheet.addCell(new Label(6, m + 1, follower, wcf_center));
+					sheet.addCell(new Label(7, m + 1, info, wcf_center));
+					sheet.addCell(new Label(8, m + 1, know, wcf_center));
+					sheet.addCell(new Label(9, m + 1, answer, wcf_center));
+					sheet.addCell(new Label(10, m + 1, contentlength + "",wcf_center));
+					sheet.addCell(new Label(11, m + 1, "1", wcf_center));
+					sheet.addCell(new Label(12, m + 1, i + "", wcf_center));								
+					
 				}
 				number = number + realanswernumber + 1;
 			}
@@ -192,7 +218,7 @@ public class informationextractiontoexcel{
 		sheet.addCell(new Label(9, 0, "AnswerSum", wcf_title));
 		sheet.addCell(new Label(10, 0, "Word", wcf_title));
 		sheet.addCell(new Label(11, 0, "Exist(1)", wcf_title));
-		sheet.addCell(new Label(12, 0, "0", wcf_title));
+		sheet.addCell(new Label(12, 0, "Sequence", wcf_title));
 		sheet.setRowView(0, 700, false);                         // 设置行高
 	}
 

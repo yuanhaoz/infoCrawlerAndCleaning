@@ -29,11 +29,18 @@ public class keywordmatch {
 	public static void main(String[] args) {
 		try {
 			long start = System.currentTimeMillis();
-			filtering("test");
-//			keywordmatch t = new keywordmatch();
-//			t.matchkeywordnotdelete("Binomial+distribution");
-//			t.matchkeyworddelete("Binomial+distribution");
-//			t.matchkeywordandlength("Binomial+distribution");
+			
+			keywordmatch t = new keywordmatch();
+//			t.filtering("Computer_network");
+//			t.filtering("Data_mining");
+//			t.filtering("Data_structure");
+//			
+//			t.filtering("test");
+			
+			t.matchkeywordnotdelete("Binomial+distribution");
+			t.matchkeyworddelete("Binomial+distribution");
+			t.matchkeywordandlength("Binomial+distribution");
+			
 			long end = System.currentTimeMillis();
 			System.out.println("总共耗时： " + (end - start) / 1000 + "秒...");
 		} catch (Exception e) {
@@ -45,7 +52,7 @@ public class keywordmatch {
 	/**
 	 * 根据关键词，处理所有Excel，匹配所有满足条件的
 	 */
-	public static void filtering(String course) throws Exception {
+	public void filtering(String course) throws Exception {
 		keywordmatch t = new keywordmatch();
 		File file0 = new File("file/datacollection/" + course);
 		File[] files = file0.listFiles();
@@ -82,6 +89,7 @@ public class keywordmatch {
 			System.out.println(keywordarray[i]);
 		}
 		WritableWorkbook workbook = Workbook.createWorkbook(new File(catalog + keyword + "-tag_keywordnotdelete.xls"));
+//		WritableWorkbook workbook = Workbook.createWorkbook(new File(catalog + keyword + "-tag_changed.xls"));
 		WritableSheet sheet = workbook.createSheet("标签", 0);     //准备新建的写的excel
 		for (int i = 0; i < rsRows; i++) {
 			//将原来的一到三列写到新Excel中，内容不变
@@ -92,7 +100,8 @@ public class keywordmatch {
 				sheet.setRowView(i, 1300, false);
 				sheet.addCell(new Label(col, i, rs.getCell(col, i).getContents(), wcf_center));
 			}
-			//处理第四列，检查文本片段是否与关键词相关
+			sheet.addCell(new Label(12, i, rs.getCell(12, i).getContents(), wcf_center));
+			//处理第11列，检查文本片段是否与关键词相关
 			Cell cell = rs.getCell(1, i);
 			String content = cell.getContents();
 			int count = 0;
@@ -146,7 +155,10 @@ public class keywordmatch {
 		}
 		WritableWorkbook workbook = Workbook.createWorkbook(new File(
 				catalog + keyword + "-tag_keyworddelete.xls"));
+//		WritableWorkbook workbook = Workbook.createWorkbook(new File(
+//				catalog + keyword + "-tag_changed1.xls"));
 		WritableSheet sheet = workbook.createSheet("标签", 0);
+		WritableCellFormat wcf_center = ExcelSet.setCenterText();
 		int row = 0;
 		for (int i = 0; i < rsRows; i++) {
 			Cell cell = rs.getCell(1, i);
@@ -169,14 +181,16 @@ public class keywordmatch {
 				sheet.setColumnView(1, 60);
 				for (int col = 0; col < 11; col++) {
 					sheet.setRowView(row, 1300, false);
-					WritableCellFormat wcf_center = ExcelSet.setCenterText();
 					sheet.addCell(new Label(col, row, rs.getCell(col, i).getContents(), wcf_center));
 				}
+				sheet.addCell(new Label(11, row, rs.getCell(11, i).getContents(), wcf_center));
+				sheet.addCell(new Label(12, row, rs.getCell(12, i).getContents(), wcf_center));
 			}
 		}
-		for (int col = 0; col < 11; col++) {
-			sheet.setRowView(row, 1300, false);
-			WritableCellFormat wcf_center = ExcelSet.setCenterText();
+		
+		//第一行不变
+		for (int col = 0; col < 13; col++) {
+			sheet.setRowView(0, 1300, false);
 			sheet.addCell(new Label(col, 0, rs.getCell(col, 0).getContents(), wcf_center));
 		}
 		workbook.write();
@@ -192,6 +206,7 @@ public class keywordmatch {
 	public void matchkeywordandlength(String keyword) throws Exception {
 		String catalog = keywordcatalogdesign.GetKeywordCatalog(keyword);
 		String path = catalog + keyword + "-tag_keyworddelete.xls";
+//		String path = catalog + keyword + "-tag_changed1.xls";
 		File file = new File(path);
 		InputStream is = new FileInputStream(file);
 		Workbook rwb = Workbook.getWorkbook(is);
@@ -203,9 +218,13 @@ public class keywordmatch {
 		for(int i = 0; i < keywordarray.length; i++){
 			System.out.println(keywordarray[i]);
 		}
+//		WritableWorkbook workbook = Workbook.createWorkbook(new File(
+//				catalog + keyword + "-tag_changed2.xls"));
 		WritableWorkbook workbook = Workbook.createWorkbook(new File(
 				catalog + keyword + "-tag_filtering.xls"));
 		WritableSheet sheet = workbook.createSheet("标签", 0);
+		WritableCellFormat wcf_center = ExcelSet.setCenterText();
+		
 		int row = -1;
 		for (int i = 0; i < rsRows; i++) {
 			Cell cell = rs.getCell(1, i);
@@ -223,9 +242,8 @@ public class keywordmatch {
 				row++;
 				sheet.setColumnView(0, 20);
 				sheet.setColumnView(1, 60);
-				for (int col = 0; col < 11; col++) {
+				for (int col = 0; col < 13; col++) {
 					sheet.setRowView(row, 1300, false);
-					WritableCellFormat wcf_center = ExcelSet.setCenterText();
 					sheet.addCell(new Label(col, row, rs.getCell(col, i).getContents(), wcf_center));
 				}
 			}

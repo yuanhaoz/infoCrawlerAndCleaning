@@ -25,7 +25,9 @@ public class datafiltering {
 	 * @param course
 	 */
 	public static void realize() throws Exception {
+		filtering("Computer_network");
 		filtering("Data_mining");
+		filtering("Data_structure");
 	}
 	
 	/**

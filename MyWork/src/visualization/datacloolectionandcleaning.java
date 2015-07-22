@@ -314,7 +314,7 @@ public class datacloolectionandcleaning extends JPanel implements ActionListener
 									String answercontent = featureExtraction.AnswerContent(doc, m - number);
 									int contentlength2 = featureExtraction.AnswerContentWordLength(doc, m - number);// 字符长度
 									int contentlength = featureExtraction.AnswerContentCharLength(doc, m - number); // 单词长度
-									int upvote = featureExtraction.AnswerUpvotes(doc, m - number);                  // 支持票数 
+									String upvote = featureExtraction.AnswerUpvotes(doc, m - number);                  // 支持票数 
 									String url1 = featureExtraction.AnswerURLs(doc, m - number);                    // 链接有无
 									String comment = featureExtraction.AnswerCommentNumbers(doc, m - number);       // 评论数量
 									

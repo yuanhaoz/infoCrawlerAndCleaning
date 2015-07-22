@@ -46,10 +46,11 @@ public class TagClassify {
 	
 	/**
 	 * 将有标签的知识碎片分离到一个新的表格之中
+	 * 输入是 keyword + -tag_changed4.xls 表，输出是 keyword + -tag_opera.xls  表
 	 */
 	public void tagKnowledgeGet(String keyword) throws Exception {
 		String catalog = keywordcatalogdesign.getTagKeywordCatalog(keyword);
-		String path = catalog + keyword + "-tag_changed4.xls";
+		String path = catalog + keyword + "-tag_changed3.xls";
 		File file = new File(path);
 		InputStream is = new FileInputStream(file);
 		Workbook rwb = Workbook.getWorkbook(is);
@@ -90,7 +91,8 @@ public class TagClassify {
 	
 	
 	/**
-	 * 
+	 * 将可以标注的知识碎片按照不同的标签存到不同的Excel表中
+	 * 输入是 keyword + -tag_opera.xls 表，输出是 keyword + “标签”  表
 	 */
 	public void tagClassify(String keyword) throws Exception {
 		String catalog = keywordcatalogdesign.getTagKeywordCatalog(keyword);
