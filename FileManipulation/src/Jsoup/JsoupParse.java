@@ -26,7 +26,7 @@ public class JsoupParse {
 		Document doc = null;
 		try {
 			File input = new File(path);
-			doc = Jsoup.parse(input, "UTF-8", "http://www.quora.com");  //Quora��վ
+			doc = Jsoup.parse(input, "UTF-8", "http://www.quora.com");  
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

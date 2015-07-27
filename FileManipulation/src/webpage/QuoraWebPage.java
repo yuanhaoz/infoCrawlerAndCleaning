@@ -28,10 +28,10 @@ public class QuoraWebPage {
 	public static void main(String[] args) throws Exception {
 		QuoraWebPage test = new QuoraWebPage();
 		String url = "http://www.baidu.com";
-		String filepath = "testdata/photo.html";
+		String filePath = "testdata/photo.html";
 //		String filepath = "F:/photo.html";
 //		test.httpClientCrawler(filepath, url);
-		test.seleniumCrawlerAuthor(filepath, url);
+		test.seleniumCrawlerAuthor(filePath, url);
 	}
 	
 	/**
@@ -39,11 +39,11 @@ public class QuoraWebPage {
 	 *          下拉四次主题页面，10秒内没打开页面会重开（问题数目为49-59）
 	 *          调整  下拉次数  可以得到问题数目会  增加
 	 * 使用技术：Selenium
-	 * @param filepath, url
+	 * @param filePath, url
 	 * 
 	 */
-	public static void seleniumCrawlerSubject(String filepath, String url) throws InterruptedException {
-		File file = new File(filepath);
+	public static void seleniumCrawlerSubject(String filePath, String url) throws InterruptedException {
+		File file = new File(filePath);
 		if(!file.exists()){
 			WebDriver driver = new InternetExplorerDriver();
 			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);    //5秒内没打开，重新加载
@@ -82,13 +82,13 @@ public class QuoraWebPage {
 			}
 			// save page
 			String html = driver.getPageSource();
-			saveHtml(filepath, html);
+			saveHtml(filePath, html);
 			System.out.println("save finish");
 			// Close the browser
 			Thread.sleep(2000);
 			driver.quit();
 		}else{
-			System.out.println(filepath + "已经存在，不必再次爬取...");
+			System.out.println(filePath + "已经存在，不必再次爬取...");
 		}
 	}
 	
@@ -97,11 +97,11 @@ public class QuoraWebPage {
 	 *          下拉四次主题页面，10秒内没打开页面会重开（答案数目一般都在10条以内）
 	 *          调整   下拉次数    可以得到较为完整的  答案较多  的问题页面
 	 * 使用技术：Selenium
-	 * @param filepath, url
+	 * @param filePath, url
 	 * 
 	 */
-	public void seleniumCrawlerQuestion(String filepath, String url) throws InterruptedException {
-		File file = new File(filepath);
+	public void seleniumCrawlerQuestion(String filePath, String url) throws InterruptedException {
+		File file = new File(filePath);
 		if(!file.exists()){
 //			System.setProperty("webdriver.firefox.bin","D:\\Program Files\\Mozilla Firefox\\firefox.exe");
 //			WebDriver driver = new FirefoxDriver();
@@ -145,13 +145,13 @@ public class QuoraWebPage {
 			}
 			// save page
 			String html = driver.getPageSource();
-			saveHtml(filepath, html);
+			saveHtml(filePath, html);
 			System.out.println("save finish");
 			// Close the browser
 			Thread.sleep(2000);
 			driver.quit();
 		}else{
-			System.out.println(filepath + "已经存在，不必再次爬取...");
+			System.out.println(filePath + "已经存在，不必再次爬取...");
 		}
 	}
 	
@@ -160,10 +160,10 @@ public class QuoraWebPage {
 	 *          10秒内没打开页面会重开
 	 *          无需下来页面，所需信息都在页面顶部
 	 * 使用技术：Selenium
-	 * @param filepath, url
+	 * @param filePath, url
 	 * 
 	 */
-	public void seleniumCrawlerAuthor(String filepath, String url) throws InterruptedException {
+	public void seleniumCrawlerAuthor(String filePath, String url) throws InterruptedException {
 		WebDriver driver = new InternetExplorerDriver();
 		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);    //5秒内没打开，重新加载
 		while (true){
@@ -182,7 +182,7 @@ public class QuoraWebPage {
 		System.out.println(String.format("\nFetching %s...", url));
 		// save page
 		String html = driver.getPageSource();
-		saveHtml(filepath, html);
+		saveHtml(filePath, html);
 		System.out.println("save finish");
 		// Close the browser
 		Thread.sleep(2000);
@@ -193,15 +193,15 @@ public class QuoraWebPage {
 	 * 实现功能：httpClient方法爬取所有页面
 	 * 			输入是 “页面保存路径filepath” 和 “主题页面链接”
 	 * 使用技术：httpClient
-	 * @param filepath, url
+	 * @param filePath, url
 	 * 
 	 */
-	public void httpClientCrawler(String filepath, String url) throws Exception{
+	public void httpClientCrawler(String filePath, String url) throws Exception{
 		HttpClient hc = new DefaultHttpClient();
 		try
 		{
 			String charset = "utf-8";
-			System.out.println("filepath is : " + filepath);
+			System.out.println("filepath is : " + filePath);
 		    System.out.println(String.format("\nFetching %s...", url));   	        	    
 		    HttpGet hg = new HttpGet(url);     
 		    hg.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
@@ -212,11 +212,11 @@ public class QuoraWebPage {
 	        hg.setHeader("Connection", "Keep-Alive");
 		    HttpResponse response = hc.execute(hg);
 		    HttpEntity entity = response.getEntity();   	       	        
-		    InputStream htm_in = null;       
+		    InputStream htmInput = null;       
 		    if(entity != null){
-		        htm_in = entity.getContent();
-		        String htm_str = InputStream2String(htm_in,charset);
-		        saveHtml(filepath, htm_str);      //保存文件
+		        htmInput = entity.getContent();
+		        String htmString = inputStream2String(htmInput,charset);
+		        saveHtml(filePath, htmString);      //保存文件
 		        System.out.println("爬取成功:" + " 网页长度为  " + entity.getContentLength());
 		    }  
 		}
@@ -233,11 +233,11 @@ public class QuoraWebPage {
 	/**
 	 * 实现功能：保存html字符串流到本地html文件
 	 * 			输入是 “页面保存路径filepath” 和 “html字符串源码”
-	 * @param filepath, str
+	 * @param filePath, str
 	 */
-	public static void saveHtml(String filepath, String str) {
+	public static void saveHtml(String filePath, String str) {
 		try {
-			OutputStreamWriter outs = new OutputStreamWriter(new FileOutputStream(filepath, true), "utf-8");
+			OutputStreamWriter outs = new OutputStreamWriter(new FileOutputStream(filePath, true), "utf-8");
 			outs.write(str);
 			outs.close();
 		} catch (IOException e) {
@@ -251,7 +251,7 @@ public class QuoraWebPage {
 	 * 			输入是 “输入流InputStream” 和 “编码方式charset”
 	 * @param in_st, charset
 	 */
-    public static String InputStream2String(InputStream in_st,String charset) throws IOException{
+    public static String inputStream2String(InputStream in_st,String charset) throws IOException{
         BufferedReader buff = new BufferedReader(new InputStreamReader(in_st, charset));
         StringBuffer res = new StringBuffer();
         String line = "";

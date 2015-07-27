@@ -8,7 +8,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/reallib/poi-3.8-20120326.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/reallib/poi-ooxml-3.8-20120326.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/reallib/weka-src.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/reallib/weka.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/reallib/weka.jar" sourcepath="lib/reallib/weka-src.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/reallib/selenium-server-standalone-2.44.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/reallib/httpclient-4.2.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/reallib/httpcore-4.2.2.jar"/>
