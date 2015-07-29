@@ -23,6 +23,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
  * 优势：可以得到答案的时间信息，并且能够调用JS操作滚动条下拉页面刷新页面
  * @author zhengyuanhao
  */
+@SuppressWarnings("deprecation")
 public class QuoraWebPage {
 
 	public static void main(String[] args) throws Exception {
@@ -197,6 +198,7 @@ public class QuoraWebPage {
 	 * 
 	 */
 	public void httpClientCrawler(String filePath, String url) throws Exception{
+		@SuppressWarnings("resource")
 		HttpClient hc = new DefaultHttpClient();
 		try
 		{
