@@ -29,7 +29,7 @@ public class KeywordCatalogDesign {
 		Iterator<String> it = a.iterator();
 		while (it.hasNext()) { // 判断是否有下一个
 			String keyword = it.next();
-			System.out.println(course + "课程目录下有如下关键词：" + keyword);
+//			System.out.println(course + "课程目录下有如下关键词：" + keyword);
 			String keywordcatalog = catalog + keyword + "/";
 			File file = new File(keywordcatalog);
 			if (!file.exists()) {
@@ -47,8 +47,9 @@ public class KeywordCatalogDesign {
 	 */
 	public static String GetKeywordCatalog(String keyword) {
 		String keywordcatalog = "";
-		String[] course = { "Computer_network", "Data_mining", "Data_structure" };
-//		String[] course = { "Data_structure" };   //只有一门课程
+//		String[] course = { "Computer_network", "Data_mining", "Data_structure" };
+		String[] course = { "Data_structure3" };   //只有一门课程
+//		String[] course = { "threadtest" };   //只有一门课程
 		for (int i = 0; i < course.length; i++) {
 			String catalog = "file/datacollection/" + course[i] + "/";
 			ArrayList<String> a = DirFile.getFileNamesFromDirectorybyArraylist(catalog); // 读取所有文件名
@@ -105,11 +106,6 @@ public class KeywordCatalogDesign {
 			}
 		}
 		return keywordcatalog;
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

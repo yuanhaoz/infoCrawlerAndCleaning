@@ -39,17 +39,17 @@ public class ExampleExperiment {
 				String keyword = it.next();       //得到关键词
 				
 				
-//				t.exampleExperiment(keyword);
-//				t.exampleExperiment2(keyword);
-//				t.exampleExperiment3(keyword);
-//				
-//				t.assumption1(keyword);
-//				t.assumption2(keyword);
-//				t.assumption3(keyword);
+				t.exampleExperiment(keyword);
+				t.exampleExperiment2(keyword);
+				t.exampleExperiment3(keyword);
+				
+				t.assumption1(keyword);
+				t.assumption2(keyword);
+				t.assumption3(keyword);
 //				t.assumption4(keyword);
-//				t.assumption3new(keyword);
-//				t.assumption4new(keyword);
-//				t.assumptionAll(keyword);
+				t.assumption3New(keyword);
+				t.assumption4New(keyword);
+				t.assumptionAll(keyword);
 				
 				t.wekaFileProduceStep1(keyword);
 				t.wekaFileProduceStep2(keyword);

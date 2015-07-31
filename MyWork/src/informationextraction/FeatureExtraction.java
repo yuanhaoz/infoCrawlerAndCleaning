@@ -13,19 +13,29 @@ package informationextraction;
  * 
  */
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.jsoup.nodes.Element;
 
 public class FeatureExtraction {
-	
+
 	/**
-	 * 主函数
+	 * 用于得到爬取数据的时间
 	 */
-	public static void main(String[] args) throws Exception {
-
+	public static String getCrawlerTime(String filePath) throws Exception {
+		//得到文件的上次修改时间
+		File file = new File(filePath);
+		long time = file.lastModified();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//设置日期格式 
+		String crawlerTime = df.format(new Date(time));   // new Date()为获取当前系统时间
+		System.out.println("CrawlerTime1 is ：" + crawlerTime);
+		return crawlerTime;
 	}
-
+	
 	/**
 	 * 实现功能：解析答案数目，返回答案数目Int
 	 * 解析对象：问题网页
@@ -50,20 +60,32 @@ public class FeatureExtraction {
 	 * @param doc
 	 */
 	public static int countRealAnswerNumber(Document doc) {
-//		int real_answer_count_s = 0;
-		Elements real_answer_count = doc.select("div.pagedlist_item");
-		int number = real_answer_count.size() - 4;
-		boolean more = doc.select("div.EmptyAnswerSuggestions").isEmpty();
-		if (!more) {
-			number = 0;
-		}
+		int number = 0;
+		Elements real_answer_count;
+		
+//		针对httpclient方法爬虫得到的网页，现在解析的网页都是针对使用selenium的网页		
+//		real_answer_count = doc.select("div.pagedlist_item");
+//		number = real_answer_count.size() - 4;
+//		System.out.println("真实答案数目：" + number);
+//		boolean more = doc.select("div.EmptyAnswerSuggestions").isEmpty();
+//		if (!more) {
+//			number = 0;
+//		}
+		
 //		针对httpclient方法爬虫得到的网页，现在解析的网页都是针对使用selenium的网页
+//		real_answer_count = doc.select("div.pagedlist_item");
 //		if (real_answer_count.size() == 2 || real_answer_count.size() == 1) {
-//			real_answer_count_s = real_answer_count.size() - 1;
+//			number = real_answer_count.size() - 1;
 //		} else {
-//			real_answer_count_s = real_answer_count.size() - 2;
+//			number = real_answer_count.size() - 2;
 //		}
 //		System.out.println("实际答案数目为：" + number);
+		
+//		通用方法
+		real_answer_count = doc.select("div.author_info");
+		number = real_answer_count.size() - 3;
+		System.out.println("真实答案数目：" + number);
+		
 		return number;
 	}
 
@@ -102,9 +124,10 @@ public class FeatureExtraction {
 		Element a = doc.select("div.grid_page_center_col").get(0);
 		Elements name = a.select("div.header").select("div.question_text_edit").select("h1");
 		if (name.size() == 0) {
-			return "该问题网页不存在问题...";
+			return "";
 		} else {
 			String name_s = name.get(0).text();
+			name_s = name_s.substring(1, name_s.length());  //去除问题的第一个星号
 			System.out.println("问题内容为：" + name_s);
 			return name_s;
 		}
@@ -120,7 +143,7 @@ public class FeatureExtraction {
 		Element a = doc.select("div.grid_page_center_col").get(0);
 		Elements expandInfo = a.select("div.header").select("div.question_details").select("div.expanded_q_text");
 		if (expandInfo.size() == 0) {
-			return "该问题网页不存在问题的附加信息...";
+			return "";
 		} else {
 			String expandInfo_s = expandInfo.get(0).text();
 			System.out.println("问题附加信息为：" + expandInfo_s);
@@ -241,25 +264,31 @@ public class FeatureExtraction {
 	 */
 	public static String answerCommentNumbers(Document doc, int n) {
 		Elements comment_numbers = doc.select("div.pagedlist_item")
-				.select("div.Answer").select("div[class$=ActionBar]");
-		Element per_answer = comment_numbers.get(n);
-		Elements comment = per_answer.select("div.action_item")
-				.select("span[action_click]").select("span[id]")
-				.select("a[class]");
-		if (comment.size() == 0) {
-			System.out.println("答案" + n + "不存在评论！！！");
-			return "0";
-		} else {
-			Elements b = comment.select("span[class]");
-			if (b.size() == 0) {
+				.select("div[class$= ActionBar]");
+		System.out.println("评论总数目：" + comment_numbers.size());
+		if(n < comment_numbers.size()){
+			Element per_answer = comment_numbers.get(n);
+			Elements comment = per_answer.select("div.action_item")
+					.select("span[action_click]").select("span[id]")
+					.select("a[class]");
+			if (comment.size() == 0) {
 				System.out.println("答案" + n + "不存在评论！！！");
 				return "0";
 			} else {
-				String comment_number = b.text();
-				System.out.println("答案" + n + "的评论数目为：" + comment_number);
-				return "1";
+				Elements b = comment.select("span[class]");
+				if (b.size() == 0) {
+					System.out.println("答案" + n + "不存在评论！！！");
+					return "0";
+				} else {
+					String comment_number = b.text();
+					System.out.println("答案" + n + "的评论数目为：" + comment_number);
+					return "1";
+				}
 			}
+		} else {
+			return "0";
 		}
+		
 	}
 	
 	/**
@@ -422,6 +451,43 @@ public class FeatureExtraction {
 	 * 解析标签形式：
 	 * @param doc,n
 	 */
+	public static String authorName(Document doc, int n) {
+		Elements author_name = doc.select("div.author_info").select(
+				"span.feed_item_answer_user"); // 读者姓名user //row AnswerListDiv
+		Element a = author_name.get(n); // 单个回答
+		// 用户存在Quora User匿名的情况
+		Elements c = a.select("a.user");
+		String author_name_s = null;
+		if (c.size() == 0) {
+			author_name_s = "Quora User(匿名用户)";
+			System.out.println("匿名用户：Quora User");
+		} else {
+			author_name_s = c.text();
+			System.out.println("作者姓名为：" + author_name_s);
+		}
+		// 用户职业存在未添加的情况
+		Elements b = a.select("span.hidden");
+		String profession = null;
+		if (b.size() == 0) {
+			profession = "未添加职业信息";
+			System.out.println("不存在职业！！！");
+		} else {
+			profession = b.text();
+			System.out.println("职业信息为：" + profession);
+		}
+		String author_info_s = author_name_s;
+//		String author_info_s = author_name_s + "：" + "\n" + profession;
+		System.out.println("第" + (n + 1) + "位回答者信息为：");
+		System.out.println(author_info_s);
+		return author_info_s;
+	}
+	
+	/**
+	 * 实现功能：解析作者的个人信息，返回作者的个人信息 string
+	 * 解析对象：问题网页（第n条回答的作者个人信息）
+	 * 解析标签形式：
+	 * @param doc,n
+	 */
 	public static String authorInfo(Document doc, int n) {
 		Elements author_name = doc.select("div.author_info").select(
 				"span.feed_item_answer_user"); // 读者姓名user //row AnswerListDiv
@@ -446,7 +512,7 @@ public class FeatureExtraction {
 			profession = b.text();
 			System.out.println("职业信息为：" + profession);
 		}
-		String author_info_s = author_name_s + "：" + "\n" + profession;
+		String author_info_s = profession;
 		System.out.println("第" + (n + 1) + "位回答者信息为：");
 		System.out.println(author_info_s);
 		return author_info_s;
@@ -493,11 +559,13 @@ public class FeatureExtraction {
 				Elements answer_count = a.select("li[class]").select(
 						"div.answers_link");
 				// int num = TopicName.size();
-				String author_Answers_s = "Know About：";
+				String author_Answers_s = "";
 				for (int i = 0; i < answer_count.size(); i++) {
-					author_Answers_s = author_Answers_s + "\n"
-							+ TopicName.get(i).text() + " ： "
+					author_Answers_s = TopicName.get(i).text() + " ： "
 							+ answer_count.get(i).text();
+//					author_Answers_s = author_Answers_s + "\n"
+//							+ TopicName.get(i).text() + " ： "
+//							+ answer_count.get(i).text();
 				}
 				System.out.println("第" + (n + 1) + "位作者回答擅长的领域主要为：" + author_Answers_s);
 				return author_Answers_s;

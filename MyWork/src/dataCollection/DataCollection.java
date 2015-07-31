@@ -26,23 +26,9 @@ import basic.KeywordCatalogDesign;
 
 public class DataCollection {
 	
-	public static void main(String[] args) throws Exception {
-		realize();
-	}
-	
-	
-	/**
-	 * 实现功能：数据采集
-	 * @param course
-	 */
-	public static void realize() throws Exception {
-		crawler("Computer_network");
-	}
-	
 	/**
 	 * 实现功能：用于爬取某门课程所有主题下的所有网页
 	 *          输入是课程名，输出是所有网页
-	 * @param course
 	 */
 	public static void crawler(String course) throws Exception {
 		String catalog = "file/datacollection/" + course;
@@ -51,22 +37,34 @@ public class DataCollection {
 		Iterator<String> it = a.iterator();   //设置迭代器
 		while(it.hasNext()){                  //判断是否有下一个
 			long start = System.currentTimeMillis();
-			String keyWord = it.next();       //得到关键词
-			crawlerSubjectPages(keyWord);     //爬取主题页面
-			crawlerQuestionAndAuthorPages(keyWord);            //爬取问题页面和作者页面
+			String keyword = it.next();       //得到关键词
+			crawlerSubjectPages(keyword);     //爬取主题页面
+			crawlerQuestionAndAuthorPages(keyword);            //爬取问题页面和作者页面
 			long end = System.currentTimeMillis();
-			System.out.println("爬取" + keyWord + "的所有信息用时：" + (end - start)/1000 + "秒...");
+			System.out.println("爬取" + keyword + "的所有信息用时：" + (end - start)/1000 + "秒...");
 		}
 	}
-
-	
 	
 	/**
-	 * 用于得到爬取数据的时间
+	 * 实现功能：用于爬取某门课程的一个主题数据
+	 *          输入是主题名和课程名，输出是主题相关网页
 	 */
-	public static String getCrawlerTime() throws Exception {
+	public static void crawlerKeyword(String keyword, String course) throws Exception {
+		KeywordCatalogDesign.setKeywordCatalog(course);           //为关键词建立目录
+		crawlerSubjectPages(keyword);     //爬取主题页面
+		crawlerQuestionAndAuthorPages(keyword);            //爬取问题页面和作者页面
+		System.out.println("爬取" + keyword + "所有信息用时...");
+	}
+
+	/**
+	 * 实现功能：用于得到爬取数据的时间
+	 */
+	public static String getCrawlerTime(String filePath) throws Exception {
+		//得到文件的上次修改时间
+		File file = new File(filePath);
+		long time = file.lastModified();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//设置日期格式 
-		String crawlerTime = df.format(new Date());   // new Date()为获取当前系统时间
+		String crawlerTime = df.format(new Date(time));   // new Date()为获取当前系统时间
 		System.out.println("CrawlerTime1 is ：" + crawlerTime);
 		return crawlerTime;
 	}
@@ -83,8 +81,7 @@ public class DataCollection {
 	}
 	
 	/**
-	 * 实现功能：解析主题网页，
-	 *          得到主题页面中所有问题页面的链接
+	 * 实现功能：解析主题网页，得到主题页面中所有问题页面的链接
 	 *          链接数量一般在49-59之间（爬取时拉动四次）
 	 * @param keyword
 	 */
@@ -99,8 +96,8 @@ public class DataCollection {
 			return testResult;
 		} else {
 			Document doc = JsoupParse.parsePathText(path);
-			Elements links = doc.select("div.pagedlist_item").select("div.title ")
-					.select("a.question_link").select("a[href]");
+			Elements links = doc.select("div.title ").select("a.question_link").select("a[href]");
+//			Elements links = doc.select("div.pagedlist_item").select("div.title ").select("a.question_link").select("a[href]");
 			// print("\n" + path + " 所有问题的链接  Links: (%d)", links.size());
 			String urls[] = new String[links.size()];
 			for (int i = 0; i < links.size(); i++) {
@@ -121,10 +118,20 @@ public class DataCollection {
 	public static ArrayList<String> getAuthorURLs(String keyword, int n){
 		String path = KeywordCatalogDesign.GetKeywordCatalog(keyword);
 		String filePath = path + keyword + n + ".html";
+		
+		System.out.println("filePath:" + filePath);
+		
 		Document doc = JsoupParse.parsePathText(filePath);
-		Elements authors = doc.select("div.grid_page_center_col").select("div.pagedlist_item").select("div.author_info");
+		
+		//旧版Quora网站（2015年9月之前的）
+//		Elements authors = doc.select("div.grid_page_center_col").select("div.pagedlist_item").select("div.author_info");
+		
+		//新版Quora网站（2015年9月之前的）（网站更新后标签发生了变化）
+//		Elements authors = doc.select("div.grid_page_center_col").select("div.pagedlist_item").select("span.feed_item_answer_user");
+		Elements authors = doc.select("div.pagedlist_item").select("span.feed_item_answer_user");
 		ArrayList<String> url = new ArrayList<String>();    //最后有三个作者是例外
-		System.out.println(authors.size());
+		System.out.println("作者个数："+authors.size());
+		
 		for (int m = 0; m < authors.size(); m++) {
 			Element a = authors.get(m);
 			Elements b = a.select("a.user");
@@ -151,10 +158,11 @@ public class DataCollection {
 	public static void crawlerSubjectPages(String keyword) throws Exception {
 		String keywordCatalog = KeywordCatalogDesign.GetKeywordCatalog(keyword);   //得到主题文件夹
 		String filePath = keywordCatalog + keyword + ".html";      //设置主题页面保存路径
+//		System.out.println("主题页面保存路径为：" + filePath);
 		String subjectUrls = DataCollection.getSubjectURLs(keyword);         //得到主题页面链接
 		QuoraWebPage.seleniumCrawlerSubject(filePath, subjectUrls);           //爬取主题页面
-		String crawlerTime = getCrawlerTime();
-		System.out.println("爬取时间为：" + crawlerTime);
+//		String crawlerTime = getCrawlerTime(filePath);
+//		System.out.println("爬取时间为：" + crawlerTime);
 	}
 	
 	/**
@@ -171,12 +179,23 @@ public class DataCollection {
 		} else {
 			for (int n = 0; n < urls.length; n++) {
 				QuoraWebPage a = new QuoraWebPage();
+				
+				//设置问题页面保存路径
 				String fileName = keyword + n + ".html";
-				String filePath = catalog + fileName;          //设置问题页面保存路径
-				a.seleniumCrawlerQuestion(filePath, urls[n]);  //爬取问题网页
-				String crawlerTime = getCrawlerTime();
-				System.out.println("爬取时间为：" + crawlerTime);
-				crawlerAuthorPages(keyword, n);                //爬取问题页面中的作者页面
+				String filePath = catalog + fileName;          
+				
+				//爬取问题网页
+				System.out.println("开始爬取问题页面..." );
+				a.seleniumCrawlerQuestion(filePath, urls[n]);  
+				System.out.println("爬取问题页面结束..." );
+				
+//				String crawlerTime = getCrawlerTime(filePath);
+//				System.out.println("爬取时间为：" + crawlerTime);
+				
+				//爬取作者页面
+				System.out.println("开始爬取作者页面..." );
+//				crawlerAuthorPages(keyword, n);                
+				System.out.println("爬取作者页面结束...");
 			}
 		}
 	}
@@ -187,16 +206,27 @@ public class DataCollection {
 	 */
 	public static void crawlerAuthorPages(String keyword, int n) throws Exception {
 		String catalog = KeywordCatalogDesign.GetKeywordCatalog(keyword);
-		ArrayList<String> authorUrls = DataCollection.getAuthorURLs(keyword, n);         //得到作者页面链接
+		ArrayList<String> authorUrls = DataCollection.getAuthorURLs(keyword, n);// 得到作者页面链接
 		for (int m = 0; m < authorUrls.size(); m++) {
+			// 设置作者页面保存路径
 			String fileName = keyword + n + "_author_" + m + ".html";
-			String filePath = catalog + fileName;                     //设置作者页面保存路径
-			File file1 = new File(filePath);						  //判断作者页面是否存在
+			String filePath = catalog + fileName;       
+			
+			File file1 = new File(filePath);// 判断作者页面是否存在
 			if(!file1.exists()){
+				System.out.println("\n"+filePath + "不存在，需要爬取...");
+				
+				// 爬取作者页面
 				QuoraWebPage a = new QuoraWebPage();
-				a.seleniumCrawlerAuthor(filePath, authorUrls.get(m));     //爬取作者页面
-				String crawlerTime = getCrawlerTime();
-				System.out.println("爬取时间为：" + crawlerTime);
+				// selenium爬虫
+				a.seleniumCrawlerAuthor(filePath, authorUrls.get(m)); 
+				// httpclient爬虫
+//				a.httpClientCrawler(filePath, authorUrls.get(m));
+				
+				System.out.println("保存文件名："+filePath);
+				// 爬取时间
+//				String crawlerTime = getCrawlerTime(filePath);
+//				System.out.println("爬取时间为：" + crawlerTime);
 			}else{
 				System.out.println(filePath + "存在，不需要爬取...");
 			}

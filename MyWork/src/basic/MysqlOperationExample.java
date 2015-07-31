@@ -30,7 +30,8 @@ public class MysqlOperationExample {
         sql = "insert into user(name, password) values(?,?)";
          
         //创建object数组
-        Object[] object = new Object[]{"admin","123456"};
+//      Object[] object = new Object[]{"admin","123456"};
+        Object[] object = new Object[]{"taishuai","111111"};
          
         //执行sql语句
         mysqlCon.doSql(sql, object);

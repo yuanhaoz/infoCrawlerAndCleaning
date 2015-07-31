@@ -14,7 +14,8 @@ public class MysqlConnection {
     private static String Driver_class = "com.mysql.jdbc.Driver";
      
     //数据库链接地址
-    private String url = "jdbc:mysql://localhost:3306/knowledgeforest";
+    private String url = "jdbc:mysql://localhost:3306/quoradataset";
+//    private String url = "jdbc:mysql://localhost:3306/knowledgeforest";
      
     //数据库用户名
     private String user = "root";
@@ -61,7 +62,7 @@ public class MysqlConnection {
          
         //判断数据库是否加载成功
         if(con != null){
-//            System.out.println("数据库加载成功！");
+            System.out.println("数据库加载成功！");
         }else{
             System.out.println("数据库加载失败！");
         }

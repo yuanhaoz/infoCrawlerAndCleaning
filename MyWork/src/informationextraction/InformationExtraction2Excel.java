@@ -116,6 +116,10 @@ public class InformationExtraction2Excel{
 				//开始解析问题页面，将问题的有关信息填入表格之中
 				System.out.println("\n开始解析： " + path);
 				Document doc = JsoupParse.parsePathText(path);
+				
+				//得到主题网页爬取时间
+				String subjectpagecrawlertime = FeatureExtraction.getCrawlerTime(path);
+				
 				ArrayList<String> titlelist = new ArrayList<String>();
 //				ArrayList<String> infolist = new ArrayList<String>();
 				titlelist.add(keyword + i);
@@ -156,6 +160,10 @@ public class InformationExtraction2Excel{
 					String answer = null;
 					
 					String authorpath = catalog + keyword + i + "_author_" + (m - number) + ".html";
+					
+					//得到主题网页爬取时间
+					String authorpagecrawlertime = FeatureExtraction.getCrawlerTime(path);
+					
 					File file1 = new File(authorpath);
 					if(!file1.exists()){
 						System.out.println(authorpath + "   不存在");
@@ -163,12 +171,12 @@ public class InformationExtraction2Excel{
 						Document doc1 = JsoupParse.parsePathText(authorpath);  //解析作者页面路径
 						
 						follower = FeatureExtraction.authorFollowers(doc1, m - number);   // 作者粉丝
-						info = FeatureExtraction.authorInfo(doc, m - number);            // 作者简历
+						info = FeatureExtraction.authorName(doc, m - number);            // 作者简历
 						know = FeatureExtraction.authorKnowAbout(doc1, m - number);       // 作者领域
 						answer = FeatureExtraction.authorAnswers(doc1, m - number);       // 回答总数
 					}
 					
-					sheet.addCell(new Label(0, m + 1, keyword + i + "_" + (m - number + 1) + " ",wcf_center));
+					sheet.addCell(new Label(0, m + 1, keyword + i + "_" + (m - number) + " ",wcf_center));
 					sheet.addCell(new Label(1, m + 1, answercontent, wcf_center));
 					sheet.addCell(new Label(2, m + 1, "0", wcf_center));
 					sheet.addCell(new Label(3, m + 1, upvote, wcf_center));

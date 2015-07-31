@@ -339,7 +339,7 @@ public class DataCollectionAndCleaning extends JPanel implements ActionListener 
 										Document doc1 = JsoupParse.parsePathText(authorpath);  //解析作者页面路径
 									
 										follower = FeatureExtraction.authorFollowers(doc1, m - number);   // 作者粉丝
-										info = FeatureExtraction.authorInfo(doc, m - number);            // 作者简历
+										info = FeatureExtraction.authorName(doc, m - number);            // 作者简历
 										know = FeatureExtraction.authorKnowAbout(doc1, m - number);       // 作者领域
 										answer = FeatureExtraction.authorAnswers(doc1, m - number);       // 回答总数
 										
