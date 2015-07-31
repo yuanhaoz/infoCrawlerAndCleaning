@@ -1,0 +1,1218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  An excerpt of an egocentric social network  -->
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+<graph edgedefault="directed">
+ 
+<!-- data schema -->
+<key id="name" for="node" attr.name="name" attr.type="string"/>
+<key id="gender" for="node" attr.name="gender" attr.type="string"/>
+  
+<!-- nodes -->  
+<node id="1">
+ <data key="name">course</data>
+ <data key="gender">M</data>
+ </node>
+ 
+ <!-- 学科 -->
+<node id="2">
+ <data key="name">Data_structure</data>
+ <data key="gender">M</data>
+</node>
+<node id="3">
+ <data key="name">Data_mining</data>
+ <data key="gender">M</data>
+</node>
+<node id="4">
+ <data key="name">Computer_network</data>
+ <data key="gender">F</data>
+</node>
+
+<!-- 数据结构 -->
+<node id="5">
+ <data key="name">Absolute+deviation</data>
+ <data key="gender">M</data>
+</node>
+<node id="6">
+ <data key="name">Array</data>
+ <data key="gender">F</data>
+</node>
+<node id="7">
+ <data key="name">AVL+tree</data>
+ <data key="gender">F</data>
+</node>
+<node id="8">
+ <data key="name">B%2B+tree</data>
+ <data key="gender">F</data>
+</node>
+<node id="9">
+ <data key="name">B+tree</data>
+ <data key="gender">M</data>
+</node>
+<node id="10">
+ <data key="name">Backward+induction</data>
+ <data key="gender">M</data>
+</node>
+<node id="11">
+ <data key="name">Best+bin+first</data>
+ <data key="gender">F</data>
+</node>
+<node id="12">
+ <data key="name">Best-first+search</data>
+ <data key="gender">F</data>
+</node>
+<node id="13">
+ <data key="name">Biased+graph</data>
+ <data key="gender">M</data>
+</node>
+<node id="14">
+ <data key="name">Binary+search+tree</data>
+ <data key="gender">M</data>
+</node>
+<node id="15">
+ <data key="name">Binary+tree</data>
+ <data key="gender">M</data>
+</node>
+<node id="16">
+ <data key="name">Binary+Trees</data>
+ <data key="gender">F</data>
+</node>
+<node id="17">
+ <data key="name">B-tree</data>
+ <data key="gender">M</data>
+</node>
+<node id="18">
+ <data key="name">Bubble+sort</data>
+ <data key="gender">M</data>
+</node>
+<node id="19">
+ <data key="name">Bucket+sort</data>
+ <data key="gender">M</data>
+</node>
+<node id="20">
+ <data key="name">Circumference</data>
+ <data key="gender">M</data>
+</node>
+<node id="21">
+ <data key="name">Counting+sort</data>
+ <data key="gender">M</data>
+</node>
+<node id="22">
+ <data key="name">Data+structure</data>
+ <data key="gender">M</data>
+</node>
+<node id="23">
+ <data key="name">Data+type</data>
+ <data key="gender">M</data>
+</node>
+<node id="24">
+ <data key="name">Decision+tree</data>
+ <data key="gender">F</data>
+</node>
+<node id="25">
+ <data key="name">Depth-first+search</data>
+ <data key="gender">M</data>
+</node>
+<node id="26">
+ <data key="name">Directed+acyclic+graph</data>
+ <data key="gender">M</data>
+</node>
+<node id="27">
+ <data key="name">Directed+graph</data>
+ <data key="gender">M</data>
+</node>
+<node id="28">
+ <data key="name">Discrete+mathematics</data>
+ <data key="gender">F</data>
+</node>
+<node id="29">
+ <data key="name">External+sorting</data>
+ <data key="gender">M</data>
+</node>
+<node id="30">
+ <data key="name">Family+tree</data>
+ <data key="gender">M</data>
+</node>
+<node id="31">
+ <data key="name">Fibonacci+heap</data>
+ <data key="gender">M</data>
+</node>
+<node id="32">
+ <data key="name">FIFO</data>
+ <data key="gender">M</data>
+</node>
+<node id="33">
+ <data key="name">graph+theory</data>
+ <data key="gender">F</data>
+</node>
+<node id="34">
+ <data key="name">Greedy+algorithm</data>
+ <data key="gender">F</data>
+</node>
+
+<node id="35">
+ <data key="name">Hash+table</data>
+ <data key="gender">F</data>
+</node>
+<node id="36">
+ <data key="name">Heap</data>
+ <data key="gender">M</data>
+</node>
+<node id="37">
+ <data key="name">Huffman+coding</data>
+ <data key="gender">M</data>
+</node>
+<node id="38">
+ <data key="name">Insertion+sort</data>
+ <data key="gender">M</data>
+</node>
+<node id="39">
+ <data key="name">Iteration</data>
+ <data key="gender">F</data>
+</node>
+<node id="40">
+ <data key="name">Line+graph</data>
+ <data key="gender">M</data>
+</node>
+<node id="41">
+ <data key="name">Linked+list</data>
+ <data key="gender">F</data>
+</node>
+<node id="42">
+ <data key="name">Merge+sort</data>
+ <data key="gender">F</data>
+</node>
+<node id="43">
+ <data key="name">Parse+tree</data>
+ <data key="gender">F</data>
+</node>
+<node id="44">
+ <data key="name">Phylogenetic+tree</data>
+ <data key="gender">M</data>
+</node>
+<node id="45">
+ <data key="name">Priority+queue</data>
+ <data key="gender">F</data>
+</node>
+<node id="46">
+ <data key="name">Quicksort</data>
+ <data key="gender">M</data>
+</node>
+<node id="47">
+ <data key="name">Radix+sort</data>
+ <data key="gender">M</data>
+</node>
+<node id="48">
+ <data key="name">Randomized+algorithm</data>
+ <data key="gender">M</data>
+</node>
+<node id="49">
+ <data key="name">Red-black+tree</data>
+ <data key="gender">M</data>
+</node>
+<node id="50">
+ <data key="name">Search+algorithm</data>
+ <data key="gender">F</data>
+</node>
+<node id="51">
+ <data key="name">Selection+sort</data>
+ <data key="gender">F</data>
+</node>
+<node id="52">
+ <data key="name">Skip+list</data>
+ <data key="gender">M</data>
+</node>
+<node id="53">
+ <data key="name">Sorted+array</data>
+ <data key="gender">M</data>
+</node>
+<node id="54">
+ <data key="name">Sorting+algorithm</data>
+ <data key="gender">M</data>
+</node>
+<node id="55">
+ <data key="name">Spanning+tree</data>
+ <data key="gender">M</data>
+</node>
+<node id="56">
+ <data key="name">Tree+traversal</data>
+ <data key="gender">M</data>
+</node>
+
+<!-- 数据挖掘 -->
+<node id="57">
+ <data key="name">Adjacency+matrix</data>
+ <data key="gender">M</data>
+</node>
+<node id="58">
+ <data key="name">ANOVA</data>
+ <data key="gender">M</data>
+</node>
+<node id="59">
+ <data key="name">Approximation+algorithm</data>
+ <data key="gender">M</data>
+</node>
+<node id="60">
+ <data key="name">Artificial+intelligence</data>
+ <data key="gender">M</data>
+</node>
+<node id="61">
+ <data key="name">Artificial+neural+network</data>
+ <data key="gender">M</data>
+</node>
+<node id="62">
+ <data key="name">Assumption</data>
+ <data key="gender">M</data>
+</node>
+<node id="63">
+ <data key="name">Bayesian</data>
+ <data key="gender">M</data>
+</node>
+<node id="64">
+ <data key="name">Bayesian+inference</data>
+ <data key="gender">M</data>
+</node>
+<node id="65">
+ <data key="name">Binomial+distribution</data>
+ <data key="gender">M</data>
+</node>
+<node id="66">
+ <data key="name">Business+intelligence</data>
+ <data key="gender">M</data>
+</node>
+<node id="67">
+ <data key="name">Categorization</data>
+ <data key="gender">M</data>
+</node>
+<!-- through patrick -->
+<node id="68">
+ <data key="name">Clustering</data>
+ <data key="gender">M</data>
+</node>
+<node id="69">
+ <data key="name">Coefficient</data>
+ <data key="gender">M</data>
+</node>
+<!-- through fernando -->
+<node id="70">
+ <data key="name">Collective+intelligence</data>
+ <data key="gender">M</data>
+</node>
+<node id="71">
+ <data key="name">Competitive+intelligence</data>
+ <data key="gender">M</data>
+</node>
+<node id="72">
+ <data key="name">Computational+complexity+theory</data>
+ <data key="gender">M</data>
+</node>
+<node id="73">
+ <data key="name">Data+analysis</data>
+ <data key="gender">M</data>
+</node>
+<node id="74">
+ <data key="name">Data+collection</data>
+ <data key="gender">M</data>
+</node>
+<node id="75">
+ <data key="name">Data+compression</data>
+ <data key="gender">F</data>
+</node>
+<node id="76">
+ <data key="name">Data+management</data>
+ <data key="gender">M</data>
+</node>
+<node id="77">
+ <data key="name">Data+mining</data>
+ <data key="gender">M</data>
+</node>
+<node id="78">
+ <data key="name">Data+model</data>
+ <data key="gender">M</data>
+</node>
+<node id="79">
+ <data key="name">Data+point</data>
+ <data key="gender">M</data>
+</node>
+<node id="80">
+ <data key="name">Data+scraping</data>
+ <data key="gender">M</data>
+</node>
+<node id="81">
+ <data key="name">Data+set</data>
+ <data key="gender">M</data>
+</node>
+<!-- through ben -->
+<node id="82">
+ <data key="name">Data+source</data>
+ <data key="gender">F</data>
+</node>
+<node id="83">
+ <data key="name">Data+warehouse</data>
+ <data key="gender">M</data>
+</node>
+<node id="84">
+ <data key="name">Domain+knowledge</data>
+ <data key="gender">F</data>
+</node>
+<node id="85">
+ <data key="name">ETL</data>
+ <data key="gender">M</data>
+</node>
+<node id="86">
+ <data key="name">Feature+selection</data>
+ <data key="gender">M</data>
+</node>
+<node id="87">
+ <data key="name">FFT</data>
+ <data key="gender">F</data>
+</node>
+<node id="88">
+ <data key="name">Forecasting</data>
+ <data key="gender">F</data>
+</node>
+<node id="89">
+ <data key="name">Fuzzy+logic</data>
+ <data key="gender">F</data>
+</node>
+<node id="90">
+ <data key="name">General+linear+model</data>
+ <data key="gender">M</data>
+</node>
+<node id="91">
+ <data key="name">Generation</data>
+ <data key="gender">M</data>
+</node>
+<node id="92">
+ <data key="name">Genetic+algorithm</data>
+ <data key="gender">M</data>
+</node>
+<node id="93">
+ <data key="name">Gradient+descent</data>
+ <data key="gender">M</data>
+</node>
+<node id="94">
+ <data key="name">Graph+theory</data>
+ <data key="gender">M</data>
+</node>
+<node id="95">
+ <data key="name">Graphical+model</data>
+ <data key="gender">F</data>
+</node>
+<node id="96">
+ <data key="name">Hidden+Markov+model</data>
+ <data key="gender">M</data>
+</node>
+<node id="97">
+ <data key="name">Hypothesis</data>
+ <data key="gender">F</data>
+</node>
+<node id="98">
+ <data key="name">Information+extraction</data>
+ <data key="gender">F</data>
+</node>
+<node id="99">
+ <data key="name">Information+overload</data>
+ <data key="gender">F</data>
+</node>
+<node id="100">
+ <data key="name">Information+retrieval</data>
+ <data key="gender">M</data>
+</node>
+<node id="101">
+ <data key="name">K-means+clustering</data>
+ <data key="gender">F</data>
+</node>
+<node id="102">
+ <data key="name">Knowledge+base</data>
+ <data key="gender">M</data>
+</node>
+<node id="103">
+ <data key="name">Knowledge+management</data>
+ <data key="gender">F</data>
+</node>
+<node id="104">
+ <data key="name">Least+squares</data>
+ <data key="gender">M</data>
+</node>
+<node id="105">
+ <data key="name">Linear+equation</data>
+ <data key="gender">F</data>
+</node>
+<node id="106">
+ <data key="name">Linear+function</data>
+ <data key="gender">M</data>
+</node>
+<node id="107">
+ <data key="name">Linear+model</data>
+ <data key="gender">M</data>
+</node>
+<node id="108">
+ <data key="name">Linear+programming</data>
+ <data key="gender">M</data>
+</node>
+<node id="109">
+ <data key="name">Linear+regression</data>
+ <data key="gender">F</data>
+</node>
+<node id="110">
+ <data key="name">Logistic+regression</data>
+ <data key="gender">F</data>
+</node>
+<node id="111">
+ <data key="name">Machine+learning</data>
+ <data key="gender">M</data>
+</node>
+<node id="112">
+ <data key="name">Marketing+research</data>
+ <data key="gender">M</data>
+</node>
+<node id="113">
+ <data key="name">Marketing+strategy</data>
+ <data key="gender">M</data>
+</node>
+<node id="114">
+ <data key="name">Markov+chain</data>
+ <data key="gender">F</data>
+</node>
+<node id="115">
+ <data key="name">Markov+model</data>
+ <data key="gender">M</data>
+</node>
+<node id="116">
+ <data key="name">Metadata</data>
+ <data key="gender">F</data>
+</node>
+<node id="117">
+ <data key="name">Natural+language+processing</data>
+ <data key="gender">M</data>
+</node>
+<node id="118">
+ <data key="name">Neural+network</data>
+ <data key="gender">M</data>
+</node>
+<node id="119">
+ <data key="name">Normal+distribution</data>
+ <data key="gender">M</data>
+</node>
+<node id="120">
+ <data key="name">Ontology</data>
+ <data key="gender">F</data>
+</node>
+<node id="121">
+ <data key="name">Parameter</data>
+ <data key="gender">M</data>
+</node>
+<node id="122">
+ <data key="name">Parsing</data>
+ <data key="gender">M</data>
+</node>
+<!-- through non -->
+<node id="123">
+ <data key="name">Pattern+recognition</data>
+ <data key="gender">M</data>
+</node>
+<node id="124">
+ <data key="name">Performance+metric</data>
+ <data key="gender">M</data>
+</node>
+<node id="125">
+ <data key="name">Plain+text</data>
+ <data key="gender">M</data>
+</node>
+<node id="126">
+ <data key="name">Predictive+analytics</data>
+ <data key="gender">M</data>
+</node>
+<node id="127">
+ <data key="name">Predictive+modelling</data>
+ <data key="gender">M</data>
+</node>
+<node id="128">
+ <data key="name">Principal+component+analysis</data>
+ <data key="gender">M</data>
+</node>
+<node id="129">
+ <data key="name">Probability+distribution</data>
+ <data key="gender">F</data>
+</node>
+<node id="130">
+ <data key="name">Random+forest</data>
+ <data key="gender">M</data>
+</node>
+<node id="131">
+ <data key="name">Recurrent+neural+network</data>
+ <data key="gender">M</data>
+</node>
+<node id="132">
+ <data key="name">Regression+analysis</data>
+ <data key="gender">M</data>
+</node>
+<node id="133">
+ <data key="name">Regular+expression</data>
+ <data key="gender">M</data>
+</node>
+<node id="134">
+ <data key="name">Reinforcement+learning</data>
+ <data key="gender">M</data>
+</node>
+<node id="135">
+ <data key="name">Search+algorithm</data>
+ <data key="gender">M</data>
+</node>
+<node id="136">
+ <data key="name">Semantic+Web</data>
+ <data key="gender">F</data>
+</node>
+<node id="137">
+ <data key="name">Standard+deviation</data>
+ <data key="gender">M</data>
+</node>
+<node id="138">
+ <data key="name">Standard+error</data>
+ <data key="gender">M</data>
+</node>
+<node id="139">
+ <data key="name">Supervised+learning</data>
+ <data key="gender">M</data>
+</node>
+<node id="140">
+ <data key="name">SVM</data>
+ <data key="gender">M</data>
+</node>
+<node id="141">
+ <data key="name">Text+analytics</data>
+ <data key="gender">M</data>
+</node>
+<node id="142">
+ <data key="name">Text+mining</data>
+ <data key="gender">M</data>
+</node>
+<node id="143">
+ <data key="name">Time+series</data>
+ <data key="gender">F</data>
+</node>
+<node id="144">
+ <data key="name">Training+set</data>
+ <data key="gender">M</data>
+</node>
+<node id="145">
+ <data key="name">Unstructured+data</data>
+ <data key="gender">M</data>
+</node>
+<node id="146">
+ <data key="name">Unsupervised+learning</data>
+ <data key="gender">M</data>
+</node>
+<node id="147">
+ <data key="name">Vector+space</data>
+ <data key="gender">M</data>
+</node>
+<node id="148">
+ <data key="name">Web+page</data>
+ <data key="gender">M</data>
+</node>
+<node id="149">
+ <data key="name">Web+scraping</data>
+ <data key="gender">M</data>
+</node>
+<node id="150">
+ <data key="name">Workflow</data>
+ <data key="gender">F</data>
+</node>
+
+
+<!-- 计算机网络 -->
+<node id="151">
+ <data key="name">3G</data>
+ <data key="gender">M</data>
+</node>
+<node id="152">
+ <data key="name">4G</data>
+ <data key="gender">M</data>
+</node>
+<node id="153">
+ <data key="name">Application+server</data>
+ <data key="gender">M</data>
+</node>
+<node id="154">
+ <data key="name">Bandwidth</data>
+ <data key="gender">M</data>
+</node>
+<node id="155">
+ <data key="name">Bit+rate</data>
+ <data key="gender">M</data>
+</node>
+<node id="156">
+ <data key="name">Bridging+(networking)</data>
+ <data key="gender">M</data>
+</node>
+<node id="157">
+ <data key="name">Broadcasting+(networking)</data>
+ <data key="gender">F</data>
+</node>
+<node id="158">
+ <data key="name">Cable</data>
+ <data key="gender">M</data>
+</node>
+<node id="159">
+ <data key="name">Cellular+network</data>
+ <data key="gender">M</data>
+</node>
+<node id="160">
+ <data key="name">Channel+(communications)</data>
+ <data key="gender">M</data>
+</node>
+<node id="161">
+ <data key="name">Circuit+switching</data>
+ <data key="gender">M</data>
+</node>
+<node id="162">
+ <data key="name">Client</data>
+ <data key="gender">M</data>
+</node>
+<node id="163">
+ <data key="name">Coaxial+cable</data>
+ <data key="gender">M</data>
+</node>
+<node id="164">
+ <data key="name">Command-line+interface</data>
+ <data key="gender">F</data>
+</node>
+<node id="165">
+ <data key="name">Communication</data>
+ <data key="gender">M</data>
+</node>
+<node id="166">
+ <data key="name">Communications+protocol</data>
+ <data key="gender">M</data>
+</node>
+<node id="167">
+ <data key="name">Communications+security</data>
+ <data key="gender">M</data>
+</node>
+<node id="168">
+ <data key="name">Computer+network</data>
+ <data key="gender">M</data>
+</node>
+<node id="169">
+ <data key="name">Context+switch</data>
+ <data key="gender">M</data>
+</node>
+<node id="170">
+ <data key="name">Data+cable</data>
+ <data key="gender">M</data>
+</node>
+<node id="171">
+ <data key="name">Data+compression</data>
+ <data key="gender">F</data>
+</node>
+<node id="172">
+ <data key="name">Data+rate</data>
+ <data key="gender">M</data>
+</node>
+<node id="173">
+ <data key="name">DDoS</data>
+ <data key="gender">M</data>
+</node>
+<node id="174">
+ <data key="name">DHCP</data>
+ <data key="gender">M</data>
+</node>
+<node id="175">
+ <data key="name">Differentiated+services</data>
+ <data key="gender">M</data>
+</node>
+<node id="176">
+ <data key="name">DNS</data>
+ <data key="gender">M</data>
+</node>
+<node id="177">
+ <data key="name">Domain+name</data>
+ <data key="gender">M</data>
+</node>
+<node id="178">
+ <data key="name">DSL</data>
+ <data key="gender">F</data>
+</node>
+<node id="179">
+ <data key="name">Ethernet</data>
+ <data key="gender">M</data>
+</node>
+<node id="180">
+ <data key="name">Frequency+domain</data>
+ <data key="gender">M</data>
+</node>
+<node id="181">
+ <data key="name">FTP</data>
+ <data key="gender">M</data>
+</node>
+<node id="182">
+ <data key="name">Gigabit+Ethernet</data>
+ <data key="gender">M</data>
+</node>
+<node id="183">
+ <data key="name">H.264</data>
+ <data key="gender">M</data>
+</node>
+<node id="184">
+ <data key="name">High+frequency</data>
+ <data key="gender">M</data>
+</node>
+<node id="185">
+ <data key="name">Home+network</data>
+ <data key="gender">F</data>
+</node>
+<node id="186">
+ <data key="name">HTML</data>
+ <data key="gender">M</data>
+</node>
+<node id="187">
+ <data key="name">HTML5</data>
+ <data key="gender">M</data>
+</node>
+<node id="188">
+ <data key="name">HTTP</data>
+ <data key="gender">M</data>
+</node>
+<node id="189">
+ <data key="name">Hyperlink</data>
+ <data key="gender">M</data>
+</node>
+<node id="190">
+ <data key="name">Infrared</data>
+ <data key="gender">M</data>
+</node>
+<node id="191">
+ <data key="name">Integrated+services</data>
+ <data key="gender">M</data>
+</node>
+<node id="192">
+ <data key="name">Interconnection</data>
+ <data key="gender">F</data>
+</node>
+<node id="193">
+ <data key="name">Internet</data>
+ <data key="gender">M</data>
+</node>
+<node id="194">
+ <data key="name">Intranet</data>
+ <data key="gender">M</data>
+</node>
+<node id="195">
+ <data key="name">IP+address</data>
+ <data key="gender">M</data>
+</node>
+<node id="196">
+ <data key="name">IPTV</data>
+ <data key="gender">M</data>
+</node>
+<node id="197">
+ <data key="name">IPv4</data>
+ <data key="gender">M</data>
+</node>
+<node id="198">
+ <data key="name">IPv6</data>
+ <data key="gender">M</data>
+</node>
+<node id="199">
+ <data key="name">ISP</data>
+ <data key="gender">F</data>
+</node>
+<node id="200">
+ <data key="name">LAN</data>
+ <data key="gender">M</data>
+</node>
+<node id="201">
+ <data key="name">Low+frequency</data>
+ <data key="gender">M</data>
+</node>
+<node id="202">
+ <data key="name">MAC</data>
+ <data key="gender">M</data>
+</node>
+<node id="203">
+ <data key="name">MAC+address</data>
+ <data key="gender">M</data>
+</node>
+<node id="204">
+ <data key="name">Mesh+networking</data>
+ <data key="gender">M</data>
+</node>
+<node id="205">
+ <data key="name">Mobile+network+operator</data>
+ <data key="gender">M</data>
+</node>
+<node id="206">
+ <data key="name">Mobile+phone</data>
+ <data key="gender">F</data>
+</node>
+<node id="207">
+ <data key="name">Multiplexing</data>
+ <data key="gender">M</data>
+</node>
+<node id="208">
+ <data key="name">Network+security</data>
+ <data key="gender">M</data>
+</node>
+<node id="209">
+ <data key="name">NFC</data>
+ <data key="gender">M</data>
+</node>
+<node id="210">
+ <data key="name">Online+service</data>
+ <data key="gender">M</data>
+</node>
+<node id="211">
+ <data key="name">Optical+fiber</data>
+ <data key="gender">M</data>
+</node>
+<node id="212">
+ <data key="name">Peer-to-peer</data>
+ <data key="gender">M</data>
+</node>
+<node id="213">
+ <data key="name">Physical+address</data>
+ <data key="gender">F</data>
+</node>
+<node id="214">
+ <data key="name">Power+cable</data>
+ <data key="gender">M</data>
+</node>
+<node id="215">
+ <data key="name">Private+network</data>
+ <data key="gender">M</data>
+</node>
+<node id="216">
+ <data key="name">Proxy+server</data>
+ <data key="gender">M</data>
+</node>
+<node id="217">
+ <data key="name">Radio</data>
+ <data key="gender">M</data>
+</node>
+<node id="218">
+ <data key="name">Radio+frequency</data>
+ <data key="gender">F</data>
+</node>
+<node id="219">
+ <data key="name">Routing</data>
+ <data key="gender">M</data>
+</node>
+<node id="220">
+ <data key="name">Routing+protocol</data>
+ <data key="gender">M</data>
+</node>
+<node id="221">
+ <data key="name">SMTP</data>
+ <data key="gender">M</data>
+</node>
+<node id="222">
+ <data key="name">Telecommunication</data>
+ <data key="gender">M</data>
+</node>
+<node id="223">
+ <data key="name">Traffic+congestion</data>
+ <data key="gender">F</data>
+</node>
+<node id="224">
+ <data key="name">URL</data>
+ <data key="gender">M</data>
+</node>
+<node id="225">
+ <data key="name">VoIP</data>
+ <data key="gender">F</data>
+</node>
+<node id="226">
+ <data key="name">VPN</data>
+ <data key="gender">M</data>
+</node>
+<node id="227">
+ <data key="name">Wavelength</data>
+ <data key="gender">M</data>
+</node>
+<node id="228">
+ <data key="name">Wi-Fi</data>
+ <data key="gender">M</data>
+</node>
+<node id="229">
+ <data key="name">Wireless+communication</data>
+ <data key="gender">M</data>
+</node>
+<node id="230">
+ <data key="name">Wireless+network</data>
+ <data key="gender">F</data>
+</node>
+<node id="231">
+ <data key="name">Wireless+router</data>
+ <data key="gender">M</data>
+</node>
+<node id="232">
+ <data key="name">Wireless+sensor+network</data>
+ <data key="gender">M</data>
+</node>
+<node id="233">
+ <data key="name">World+Wide+Web</data>
+ <data key="gender">M</data>
+</node>
+
+
+<!-- edges -->
+<edge source="1" target="2"></edge>
+<edge source="1" target="3"></edge>
+<edge source="1" target="4"></edge>
+
+<!-- Data_structure's friends -->
+<edge source="2" target="5"></edge>
+<edge source="2" target="6"></edge>
+<edge source="2" target="7"></edge>
+<edge source="2" target="8"></edge>
+<edge source="2" target="9"></edge>
+<edge source="2" target="10"></edge>
+<edge source="2" target="11"></edge>
+<edge source="2" target="12"></edge>
+<edge source="2" target="13"></edge>
+<edge source="2" target="14"></edge>
+<edge source="2" target="15"></edge>
+<edge source="2" target="16"></edge>
+<edge source="2" target="17"></edge>
+<edge source="2" target="18"></edge>
+<edge source="2" target="19"></edge>
+<edge source="2" target="20"></edge>
+<edge source="2" target="21"></edge>
+<edge source="2" target="22"></edge>
+<edge source="2" target="23"></edge>
+<edge source="2" target="24"></edge>
+<edge source="2" target="25"></edge>
+<edge source="2" target="26"></edge>
+<edge source="2" target="27"></edge>
+<edge source="2" target="28"></edge>
+<edge source="2" target="29"></edge>
+<edge source="2" target="30"></edge>
+<edge source="2" target="31"></edge>
+<edge source="2" target="32"></edge>
+<edge source="2" target="33"></edge>
+<edge source="2" target="34"></edge>
+<edge source="2" target="35"></edge>
+<edge source="2" target="36"></edge>
+<edge source="2" target="37"></edge>
+<edge source="2" target="38"></edge>
+<edge source="2" target="39"></edge>
+<edge source="2" target="40"></edge>
+<edge source="2" target="41"></edge>
+<edge source="2" target="42"></edge>
+<edge source="2" target="43"></edge>
+<edge source="2" target="44"></edge>
+<edge source="2" target="45"></edge>
+<edge source="2" target="46"></edge>
+<edge source="2" target="47"></edge>
+<edge source="2" target="48"></edge>
+<edge source="2" target="49"></edge>
+<edge source="2" target="50"></edge>
+<edge source="2" target="51"></edge>
+<edge source="2" target="52"></edge>
+<edge source="2" target="53"></edge>
+<edge source="2" target="54"></edge>
+<edge source="2" target="55"></edge>
+<edge source="2" target="56"></edge>
+
+<!-- Data_mining's friends -->
+<edge source="3" target="57"></edge>
+<edge source="3" target="58"></edge>
+<edge source="3" target="59"></edge>
+<edge source="3" target="60"></edge>
+<edge source="3" target="61"></edge>
+<edge source="3" target="62"></edge>
+<edge source="3" target="63"></edge>
+<edge source="3" target="64"></edge>
+<edge source="3" target="65"></edge>
+<edge source="3" target="66"></edge>
+<edge source="3" target="67"></edge>
+<edge source="3" target="68"></edge>
+<edge source="3" target="69"></edge>
+<edge source="3" target="70"></edge>
+<edge source="3" target="71"></edge>
+<edge source="3" target="72"></edge>
+<edge source="3" target="73"></edge>
+<edge source="3" target="74"></edge>
+<edge source="3" target="75"></edge>
+<edge source="3" target="76"></edge>
+<edge source="3" target="77"></edge>
+<edge source="3" target="78"></edge>
+<edge source="3" target="79"></edge>
+<edge source="3" target="80"></edge>
+<edge source="3" target="81"></edge>
+<edge source="3" target="82"></edge>
+<edge source="3" target="83"></edge>
+<edge source="3" target="84"></edge>
+<edge source="3" target="85"></edge>
+<edge source="3" target="86"></edge>
+<edge source="3" target="87"></edge>
+<edge source="3" target="88"></edge>
+<edge source="3" target="89"></edge>
+<edge source="3" target="90"></edge>
+<edge source="3" target="91"></edge>
+<edge source="3" target="92"></edge>
+<edge source="3" target="93"></edge>
+<edge source="3" target="94"></edge>
+<edge source="3" target="95"></edge>
+<edge source="3" target="96"></edge>
+<edge source="3" target="97"></edge>
+<edge source="3" target="98"></edge>
+<edge source="3" target="99"></edge>
+<edge source="3" target="100"></edge>
+<edge source="3" target="101"></edge>
+<edge source="3" target="102"></edge>
+<edge source="3" target="103"></edge>
+<edge source="3" target="104"></edge>
+<edge source="3" target="105"></edge>
+<edge source="3" target="106"></edge>
+<edge source="3" target="107"></edge>
+<edge source="3" target="108"></edge>
+<edge source="3" target="109"></edge>
+<edge source="3" target="110"></edge>
+<edge source="3" target="111"></edge>
+<edge source="3" target="112"></edge>
+<edge source="3" target="113"></edge>
+<edge source="3" target="114"></edge>
+<edge source="3" target="115"></edge>
+<edge source="3" target="116"></edge>
+<edge source="3" target="117"></edge>
+<edge source="3" target="118"></edge>
+<edge source="3" target="119"></edge>
+<edge source="3" target="120"></edge>
+<edge source="3" target="121"></edge>
+<edge source="3" target="122"></edge>
+<edge source="3" target="123"></edge>
+<edge source="3" target="124"></edge>
+<edge source="3" target="125"></edge>
+<edge source="3" target="126"></edge>
+<edge source="3" target="127"></edge>
+<edge source="3" target="128"></edge>
+<edge source="3" target="129"></edge>
+<edge source="3" target="130"></edge>
+<edge source="3" target="131"></edge>
+<edge source="3" target="132"></edge>
+<edge source="3" target="133"></edge>
+<edge source="3" target="134"></edge>
+<edge source="3" target="135"></edge>
+<edge source="3" target="136"></edge>
+<edge source="3" target="137"></edge>
+<edge source="3" target="138"></edge>
+<edge source="3" target="139"></edge>
+<edge source="3" target="140"></edge>
+<edge source="3" target="141"></edge>
+<edge source="3" target="142"></edge>
+<edge source="3" target="143"></edge>
+<edge source="3" target="144"></edge>
+<edge source="3" target="145"></edge>
+<edge source="3" target="146"></edge>
+<edge source="3" target="147"></edge>
+<edge source="3" target="148"></edge>
+<edge source="3" target="149"></edge>
+<edge source="3" target="150"></edge>
+
+<!-- Data_mining's friends -->
+<edge source="4" target="151"></edge>
+<edge source="4" target="152"></edge>
+<edge source="4" target="153"></edge>
+<edge source="4" target="154"></edge>
+<edge source="4" target="155"></edge>
+<edge source="4" target="156"></edge>
+<edge source="4" target="157"></edge>
+<edge source="4" target="158"></edge>
+<edge source="4" target="159"></edge>
+<edge source="4" target="160"></edge>
+<edge source="4" target="161"></edge>
+<edge source="4" target="162"></edge>
+<edge source="4" target="163"></edge>
+<edge source="4" target="164"></edge>
+<edge source="4" target="165"></edge>
+<edge source="4" target="166"></edge>
+<edge source="4" target="167"></edge>
+<edge source="4" target="168"></edge>
+<edge source="4" target="169"></edge>
+<edge source="4" target="170"></edge>
+<edge source="4" target="171"></edge>
+<edge source="4" target="172"></edge>
+<edge source="4" target="173"></edge>
+<edge source="4" target="174"></edge>
+<edge source="4" target="175"></edge>
+<edge source="4" target="176"></edge>
+<edge source="4" target="177"></edge>
+<edge source="4" target="178"></edge>
+<edge source="4" target="179"></edge>
+<edge source="4" target="180"></edge>
+<edge source="4" target="181"></edge>
+<edge source="4" target="182"></edge>
+<edge source="4" target="183"></edge>
+<edge source="4" target="184"></edge>
+<edge source="4" target="185"></edge>
+<edge source="4" target="186"></edge>
+<edge source="4" target="187"></edge>
+<edge source="4" target="188"></edge>
+<edge source="4" target="189"></edge>
+<edge source="4" target="190"></edge>
+<edge source="4" target="191"></edge>
+<edge source="4" target="192"></edge>
+<edge source="4" target="193"></edge>
+<edge source="4" target="194"></edge>
+<edge source="4" target="195"></edge>
+<edge source="4" target="196"></edge>
+<edge source="4" target="197"></edge>
+<edge source="4" target="198"></edge>
+<edge source="4" target="199"></edge>
+<edge source="4" target="200"></edge>
+<edge source="4" target="201"></edge>
+<edge source="4" target="202"></edge>
+<edge source="4" target="203"></edge>
+<edge source="4" target="204"></edge>
+<edge source="4" target="205"></edge>
+<edge source="4" target="206"></edge>
+<edge source="4" target="207"></edge>
+<edge source="4" target="208"></edge>
+<edge source="4" target="209"></edge>
+<edge source="4" target="210"></edge>
+<edge source="4" target="211"></edge>
+<edge source="4" target="212"></edge>
+<edge source="4" target="213"></edge>
+<edge source="4" target="214"></edge>
+<edge source="4" target="215"></edge>
+<edge source="4" target="216"></edge>
+<edge source="4" target="217"></edge>
+<edge source="4" target="218"></edge>
+<edge source="4" target="219"></edge>
+<edge source="4" target="220"></edge>
+<edge source="4" target="221"></edge>
+<edge source="4" target="222"></edge>
+<edge source="4" target="223"></edge>
+<edge source="4" target="224"></edge>
+<edge source="4" target="225"></edge>
+<edge source="4" target="226"></edge>
+<edge source="4" target="227"></edge>
+<edge source="4" target="228"></edge>
+<edge source="4" target="229"></edge>
+<edge source="4" target="230"></edge>
+<edge source="4" target="231"></edge>
+<edge source="4" target="232"></edge>
+<edge source="4" target="233"></edge>
+
+<!-- B+tree's friends -->
+<edge source="8" target="9"></edge>
+<edge source="8" target="17"></edge>
+<edge source="15" target="16"></edge>
+<!-- Sorting+algorithm's friends -->
+<edge source="54" target="18"></edge>
+<edge source="54" target="19"></edge>
+<edge source="54" target="21"></edge>
+<edge source="54" target="29"></edge>
+<edge source="54" target="38"></edge>
+<edge source="54" target="42"></edge>
+<edge source="54" target="46"></edge>
+<edge source="54" target="51"></edge>
+<!-- Binary_tree's friends Data_mining -->
+<edge source="3" target="14"></edge>
+<edge source="3" target="15"></edge>
+<edge source="3" target="16"></edge>
+
+</graph>
+</graphml>

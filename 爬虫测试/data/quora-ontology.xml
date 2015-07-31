@@ -1,0 +1,486 @@
+<tree>
+ <declarations>
+   <attributeDecl name="name" type="String"/>
+ </declarations>
+ <branch>
+  <attribute name="name" value="Course"/>
+  <branch>
+   <attribute name="name" value="Data_structure"/>
+   <branch>
+	<attribute name="name" value="Absolute+deviation"/>
+	<leaf>
+		<attribute name="name" value="Absolute+deviation-tag.xls"/>
+	</leaf>
+   </branch>
+   <leaf>
+    <attribute name="name" value="Array"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="AVL+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="B%2B+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="B+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Backward+induction"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Best+bin+first"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Biased+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Binary+search+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Binary+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Binary+Trees"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="B-tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Bubble+sort"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Circumference"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Counting+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Data+structure"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Data+type"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Decision+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Depth-first+search"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Directed+acyclic+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Directed+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Discrete+mathematics"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="External+sorting"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Family+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Fibonacci+heap"/>
+   </leaf>
+   
+      <leaf>
+    <attribute name="name" value="FIFO"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="graph+theory"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Greedy+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Hash+table"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Heap"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Huffman+coding"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Insertion+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Iteration"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Line+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Linked+list"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Merge+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Parse+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Phylogenetic+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Priority+queue"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Quicksort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Radix+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Randomized+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Red-black+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Search+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Selection+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Skip+list"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Sorted+array"/>
+   </leaf>
+     <leaf>
+    <attribute name="name" value="Sorting+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Spanning+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Tree+traversal"/>
+   </leaf>  
+  </branch>
+  
+  
+  <branch>
+   <attribute name="name" value="Data_mining"/>
+   <branch>
+	<attribute name="name" value="Adjacency+matrix"/>
+	<leaf>
+		<attribute name="name" value="Adjacency+matrix.xls"/>
+	</leaf>
+   </branch>
+   <leaf>
+    <attribute name="name" value="Array"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="AVL+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="B%2B+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="B+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Backward+induction"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Best+bin+first"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Biased+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Binary+search+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Binary+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Binary+Trees"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="B-tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Bubble+sort"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Circumference"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Counting+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Data+structure"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Data+type"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Decision+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Depth-first+search"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Directed+acyclic+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Directed+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Discrete+mathematics"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="External+sorting"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Family+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Fibonacci+heap"/>
+   </leaf>
+   
+      <leaf>
+    <attribute name="name" value="FIFO"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="graph+theory"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Greedy+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Hash+table"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Heap"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Huffman+coding"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Insertion+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Iteration"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Line+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Linked+list"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Merge+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Parse+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Phylogenetic+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Priority+queue"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Quicksort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Radix+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Randomized+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Red-black+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Search+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Selection+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Skip+list"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Sorted+array"/>
+   </leaf>
+     <leaf>
+    <attribute name="name" value="Sorting+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Spanning+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Tree+traversal"/>
+   </leaf>  
+  </branch>
+  
+  
+  <branch>
+   <attribute name="name" value="Computer_network"/>
+   <branch>
+	<attribute name="name" value="3G"/>
+	<leaf>
+		<attribute name="name" value="3G.xls"/>
+	</leaf>
+   </branch>
+   <leaf>
+    <attribute name="name" value="Array"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="AVL+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="B%2B+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="B+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Backward+induction"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Best+bin+first"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Biased+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Binary+search+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Binary+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Binary+Trees"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="B-tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Bubble+sort"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Circumference"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Counting+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Data+structure"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Data+type"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Decision+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Depth-first+search"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Directed+acyclic+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Directed+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Discrete+mathematics"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="External+sorting"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Family+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Fibonacci+heap"/>
+   </leaf>
+   
+      <leaf>
+    <attribute name="name" value="FIFO"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="graph+theory"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Greedy+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Hash+table"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Heap"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Huffman+coding"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Insertion+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Iteration"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Line+graph"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Linked+list"/>
+   </leaf>
+      <leaf>
+    <attribute name="name" value="Merge+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Parse+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Phylogenetic+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Priority+queue"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Quicksort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Radix+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Randomized+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Red-black+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Search+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Selection+sort"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Skip+list"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Sorted+array"/>
+   </leaf>
+     <leaf>
+    <attribute name="name" value="Sorting+algorithm"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Spanning+tree"/>
+   </leaf>
+   <leaf>
+    <attribute name="name" value="Tree+traversal"/>
+   </leaf>  
+  </branch>
+  
+  
+  
+ </branch>
+</tree>
