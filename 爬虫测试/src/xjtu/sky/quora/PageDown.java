@@ -29,8 +29,8 @@ public class PageDown {
 
 	public static void main(String[] args) throws InterruptedException {
 		PageDown test = new PageDown();
-		String url = "http://byzt.xjtu.edu.cn/byxc1.htm";
-		String filename = "Quora";
+		String url = "http://www.quora.com/What-is-the-best-master-data-management-software-right-now";
+		String filename = "Data+management1.html";
 		test.pagedown(filename, url);
 	}
 	

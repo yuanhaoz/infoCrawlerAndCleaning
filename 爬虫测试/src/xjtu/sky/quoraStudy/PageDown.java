@@ -28,9 +28,9 @@ public class PageDown {
 
 	public static void main(String[] args) throws InterruptedException {
 		PageDown test = new PageDown();
-		String url = "http://byzt.xjtu.edu.cn/byxc1.htm";
-		String filepath = "testdata/photo.html";
-		test.seleniumCrawlerAuthor(filepath, url);
+		String url = "http://www.quora.com/What-is-the-best-master-data-management-software-right-now";
+		String filepath = "testdata/1.html";
+		test.seleniumCrawlerQuestion(filepath, url);
 	}
 	
 	/**

@@ -1,5 +1,6 @@
 package test1;
 
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +22,7 @@ public class test1 {
 	}
 
 	@Test
-	public void testtimes() {
+	public void testTimes() {
 		// 在字符串中找ab出现的次数
 		Pattern p = Pattern.compile("(?i)and");
 		String u = "What AND Andss are the and 10 must-know algorithms and data";
@@ -31,6 +32,26 @@ public class test1 {
 			i++;
 		}
 		System.out.println("出现次数： " + i);
+		
+		 HashMap<String , Double> map = new HashMap<String , Double>(); 
+		 map.put("语文" , 80.0); 
+		 map.put("数学" , 89.0); 
+		 map.put("英语" , 78.2); 
 	}
+	
+	@Test
+	public void deleteString() {
+		String s1 = "abc";
+		String s2 = "1111abcdefe";
+		if (s2.contains(s1)) {
+			System.out.println("s2包含了s1");
+			// 删掉s1
+			s2 = s2.replace(s2.substring(s2.indexOf(s1), s2.indexOf(s1) + s1.length()), "");
+			System.out.println(s2);
+		} else {
+			System.out.println("s2不包含s1");
+		}
+	}
+		   
 
 }
