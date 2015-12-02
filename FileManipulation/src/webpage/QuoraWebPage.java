@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.http.HttpEntity;
@@ -16,7 +17,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 
 /**
@@ -29,10 +32,10 @@ public class QuoraWebPage {
 	public static void main(String[] args) throws Exception {
 		QuoraWebPage test = new QuoraWebPage();
 		String url = "http://www.baidu.com";
-		String filePath = "testdata/photo.html";
-//		String filepath = "F:/photo.html";
-//		test.httpClientCrawler(filepath, url);
-		test.seleniumCrawlerAuthor(filePath, url);
+		String filePath = "F:\\test.html";
+//		test.seleniumChrome(filePath, url);
+//		test.seleniumCrawlerAuthor(filePath, url);
+		test.httpClientCrawler(filePath, url);
 	}
 	
 	/**
@@ -41,13 +44,24 @@ public class QuoraWebPage {
 	 *          调整  下拉次数  可以得到问题数目会  增加
 	 * 使用技术：Selenium
 	 * @param filePath, url
+	 * @throws InterruptedException 
 	 * 
 	 */
-	public static void seleniumCrawlerSubject(String filePath, String url) throws InterruptedException {
+	public static void seleniumCrawlerSubject(String filePath, String url) throws InterruptedException{
+		// 设置
+//		System.setProperty("webdriver.ie.driver","C:\\Program Files\\Internet Explorer\\IEDriverServer.exe");
+//		System.out.println("InternetExplorerDriver opened");
 		File file = new File(filePath);
+		int delay = 12;
 		if(!file.exists()){
+//			try{
+//				
+//			} catch(Exception e) {
+//				
+//			}
 			WebDriver driver = new InternetExplorerDriver();
-			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);    //5秒内没打开，重新加载
+			//5秒内没打开，重新加载
+			driver.manage().timeouts().pageLoadTimeout(delay, TimeUnit.SECONDS);    
 			while (true){
 				try{
 					driver.get(url);
@@ -56,7 +70,7 @@ public class QuoraWebPage {
 				{
 					driver.quit();
 					driver = new InternetExplorerDriver();
-					driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+					driver.manage().timeouts().pageLoadTimeout(delay, TimeUnit.SECONDS);
 					continue;
 				}
 				break;
@@ -102,14 +116,18 @@ public class QuoraWebPage {
 	 * 
 	 */
 	public void seleniumCrawlerQuestion(String filePath, String url) throws InterruptedException {
+		// 设置
+//		System.setProperty("webdriver.ie.driver","C:\\Program Files\\Internet Explorer\\IEDriverServer.exe");
+//		System.out.println("InternetExplorerDriver opened");
 		File file = new File(filePath);
+		int delay = 10;
 		if(!file.exists()){
 //			System.setProperty("webdriver.firefox.bin","D:\\Program Files\\Mozilla Firefox\\firefox.exe");
 //			WebDriver driver = new FirefoxDriver();
-			System.out.println("hehe");
+//			System.out.println("太帅你好...");
 			WebDriver driver = new InternetExplorerDriver();
-			System.out.println("hehe");
-			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);    //5秒内没打开，重新加载
+//			System.out.println("太帅你好...");
+			driver.manage().timeouts().pageLoadTimeout(delay, TimeUnit.SECONDS);    //5秒内没打开，重新加载
 			while (true){
 				try{
 					driver.get(url);
@@ -118,7 +136,7 @@ public class QuoraWebPage {
 				{
 					driver.quit();
 					driver = new InternetExplorerDriver();
-					driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+					driver.manage().timeouts().pageLoadTimeout(delay, TimeUnit.SECONDS);
 					continue;
 				}
 				break;
@@ -165,6 +183,12 @@ public class QuoraWebPage {
 	 * 
 	 */
 	public void seleniumCrawlerAuthor(String filePath, String url) throws InterruptedException {
+		System.out.println(String.format("Fetching %s...", url));
+		
+		// 设置
+//		System.setProperty("webdriver.ie.driver","C:\\Program Files\\Internet Explorer\\IEDriverServer.exe");
+//		System.out.println("InternetExplorerDriver opened");
+		
 		WebDriver driver = new InternetExplorerDriver();
 		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);    //5秒内没打开，重新加载
 		while (true){
@@ -180,11 +204,45 @@ public class QuoraWebPage {
 			}
 			break;
 		}
-		System.out.println(String.format("\nFetching %s...", url));
 		// save page
 		String html = driver.getPageSource();
 		saveHtml(filePath, html);
-		System.out.println("save finish");
+		System.out.println("save finish...");
+		// Close the browser
+		Thread.sleep(2000);
+		driver.quit();
+	}
+	
+	//chrome
+	public void seleniumChrome(String filePath, String url) throws InterruptedException {
+		System.out.println(String.format("Fetching %s...", url));
+		
+		// 设置
+		System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
+		System.out.println("chromedriver opened");
+		
+		DesiredCapabilities capabilities = DesiredCapabilities.chrome(); 
+		capabilities.setCapability("chrome.switches", Arrays.asList("--start-maximized")); 
+		
+		WebDriver driver = new org.openqa.selenium.chrome.ChromeDriver(capabilities);
+		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);    //5秒内没打开，重新加载
+		while (true){
+			try{
+				driver.get(url);
+			}
+			catch (Exception e)
+			{
+				driver.quit();
+				driver = new ChromeDriver();
+				driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+				continue;
+			}
+			break;
+		}
+		// save page
+		String html = driver.getPageSource();
+		saveHtml(filePath, html);
+		System.out.println("save finish...");
 		// Close the browser
 		Thread.sleep(2000);
 		driver.quit();
@@ -200,18 +258,20 @@ public class QuoraWebPage {
 	public void httpClientCrawler(String filePath, String url) throws Exception{
 		@SuppressWarnings("resource")
 		HttpClient hc = new DefaultHttpClient();
+		
+		String charset = "utf-8";
+		System.out.println("filepath is : " + filePath);
+	    System.out.println(String.format("\nFetching %s...", url));   	        	    
+	    HttpGet hg = new HttpGet(url);     
+	    hg.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+	    hg.setHeader("Accept-Language", "zh-cn,zh;q=0.5");
+	    hg.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 5.1; rv:7.0.1) Gecko/20100101 Firefox/7.0.1)");
+	    hg.setHeader("Accept-Charset", "GB2312,utf-8;q=0.7,*;q=0.7");
+	    hg.setHeader("Host", "www.quora.com");
+        hg.setHeader("Connection", "Keep-Alive");
+        
 		try
 		{
-			String charset = "utf-8";
-			System.out.println("filepath is : " + filePath);
-		    System.out.println(String.format("\nFetching %s...", url));   	        	    
-		    HttpGet hg = new HttpGet(url);     
-		    hg.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-		    hg.setHeader("Accept-Language", "zh-cn,zh;q=0.5");
-		    hg.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 5.1; rv:7.0.1) Gecko/20100101 Firefox/7.0.1)");
-		    hg.setHeader("Accept-Charset", "GB2312,utf-8;q=0.7,*;q=0.7");
-		    hg.setHeader("Host", "www.quora.com");
-	        hg.setHeader("Connection", "Keep-Alive");
 		    HttpResponse response = hc.execute(hg);
 		    HttpEntity entity = response.getEntity();   	       	        
 		    InputStream htmInput = null;       
@@ -223,14 +283,23 @@ public class QuoraWebPage {
 		    }  
 		}
 		catch(Exception err) {
-			System.err.println("爬取失败...失败原因: " + err.getMessage()); 		
+			System.err.println("爬取失败...失败原因: " + err.getMessage()); 
+//			System.out.println("第二次爬取...");
+//			HttpResponse response = hc.execute(hg);
+//		    HttpEntity entity = response.getEntity();   	       	        
+//		    InputStream htmInput = null;       
+//		    if(entity != null){
+//		        htmInput = entity.getContent();
+//		        String htmString = inputStream2String(htmInput,charset);
+//		        saveHtml(filePath, htmString);      //保存文件
+//		        System.out.println("爬取成功:" + " 网页长度为  " + entity.getContentLength());
+//		    }  
 		}
 		finally {
 	        //关闭连接，释放资源
 	        hc.getConnectionManager().shutdown();
 	    }
 	}
-
 
 	/**
 	 * 实现功能：保存html字符串流到本地html文件
@@ -265,5 +334,3 @@ public class QuoraWebPage {
     
     
 }
-
-

@@ -14,7 +14,8 @@ public class MysqlConnection {
     private static String Driver_class = "com.mysql.jdbc.Driver";
      
     //数据库链接地址
-    private String url = "jdbc:mysql://localhost:3306/knowledgeforest";
+    private String url = "jdbc:mysql://localhost:3306/quoradataset";
+//    private String url = "jdbc:mysql://localhost:3306/knowledgeforest";
      
     //数据库用户名
     private String user = "root";
