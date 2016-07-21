@@ -7,9 +7,10 @@ public class InformationExtraction2MysqlInstance {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //		test();
-		test("Data_structure");
-		test("Data_mining");
-		test("Computer_network");
+//		test("Data_structure");
+//		test("Data_mining");
+//		test("Computer_network");
+		test("Data_structure_excel112");
 //		System.out.println("aa aa".length());;
 	}
 	

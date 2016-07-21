@@ -32,7 +32,7 @@ public class FeatureExtraction {
 		long time = file.lastModified();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//设置日期格式 
 		String crawlerTime = df.format(new Date(time));   // new Date()为获取当前系统时间
-		System.out.println("CrawlerTime1 is ：" + crawlerTime);
+//		System.out.println("CrawlerTime is ：" + crawlerTime);
 		return crawlerTime;
 	}
 	
@@ -413,7 +413,8 @@ public class FeatureExtraction {
 	 */
 	public static String answerContent(Document doc, int n) {
 		System.out.println("\n回答内容为：");
-		Elements contents = doc.select("div.Answer");
+//		Elements contents = doc.select("div.Answer");
+		Elements contents = doc.select("div.Answer AnswerBase");
 		Element content_i = contents.get(2 * n);
 		String content = content_i.attr("id");
 		Elements title = doc.select("div.header").select("div.question_text_edit");

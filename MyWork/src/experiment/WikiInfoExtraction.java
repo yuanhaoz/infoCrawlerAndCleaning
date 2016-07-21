@@ -27,6 +27,7 @@ import Jsoup.JsoupParse;
 
 public class WikiInfoExtraction {
 	private static WikiInfoExtraction a = new WikiInfoExtraction();
+	private static String catalog = "F:/data_predeal_wiki/课程术语（维基）/Data_structure/";
 
 	// 得到主题词名
 	public void getKeyword(Document doc) {
@@ -75,12 +76,12 @@ public class WikiInfoExtraction {
 				}
 			}
 		} else {
-			System.out.println("不存在h2标签...");
+			System.out.println("不存在h2、h3、h4标签...");
 		}
 		return title;
 	}
 
-	// 得到Contents中的一级标题
+	// 得到Content
 	public void getContent(Document doc, String keyword) {
 		// 判断是否存在目录，有些页面没有
 		Elements body = doc.select("div.mw-content-ltr");
@@ -116,15 +117,13 @@ public class WikiInfoExtraction {
 						// Elements brothers = child.siblingElements();
 						// if(brothers.size()!=0){
 						Element brother = child.nextElementSibling(); // 得到该标题名后的一个兄弟节点
-						Elements brotherClass = brother
-								.select("span.mw-headline"); // 选取兄弟节点的
+						Elements brotherClass = brother.select("span.mw-headline"); // 选取兄弟节点的
 						while (brotherClass.size() == 0) { // 大小为0，表示下个节点不是标题节点（h2等）
 							content = content + brother.text() + "\n"; // 若为图片，无内容
 							// System.out.println(brother.text());
 							brother = brother.nextElementSibling(); // 寻找下一个兄弟节点
 							try {
-								brotherClass = brother
-										.select("span.mw-headline");
+								brotherClass = brother.select("span.mw-headline");
 							} catch (Exception e) {
 								break;
 							}
@@ -158,8 +157,7 @@ public class WikiInfoExtraction {
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-							System.out.println("写文件出错:" + keyword + "    "
-									+ title);
+							System.out.println("写文件出错:" + keyword + "    " + title);
 						}
 					} else {
 //						 System.out.println(keyword+"不存在有用的目录，只存在See also等目录...");
@@ -179,7 +177,7 @@ public class WikiInfoExtraction {
 	public void writeFile(String keyword, String file, String content)
 			throws Exception {
 		// 创建存储目录
-		String catalog = "F:/课程术语（维基）/Data_structure/";
+//		String catalog = "F:/data_predeal_wiki/课程术语（维基）/Data_structure/";
 		File path = new File(catalog + keyword);
 		if (!path.exists()) {
 			path.mkdir();
@@ -225,7 +223,7 @@ public class WikiInfoExtraction {
 	public static void test(String keyword) {
 		// 解析对象
 		// String keyword = "A-star_algorithm";
-		String path = "F:/课程术语（维基）/Data_structure/" + keyword + ".html";
+		String path = catalog + keyword + ".html";
 		Document doc = JsoupParse.parsePathText(path);
 
 		// 解析函数
@@ -238,7 +236,7 @@ public class WikiInfoExtraction {
 	// 具体实现
 	public static void realize() {
 		// 解析对象
-		String catalog = "F:/课程术语（维基）/Data_structure/";
+//		String catalog = "F:/课程术语（维基）/Data_structure/";
 		ArrayList<String> keywordSet = DirFile
 				.getFileNamesFromDirectorybyArraylist(catalog); // 读取所有文件名
 		for (int i = 0; i < keywordSet.size(); i++) {
@@ -252,8 +250,7 @@ public class WikiInfoExtraction {
 				Document doc = JsoupParse.parsePathText(path);
 				a.getContent(doc, keyword);
 			} else {
-				System.out.println("Graph_isomorphism_problem.html网页是个例外，"
-						+ "选择单独分析，不在主程序里分析...");
+				System.out.println("Graph_isomorphism_problem.html网页是个例外，" + "选择单独分析，不在主程序里分析...");
 			}
 			
 		}
@@ -262,11 +259,11 @@ public class WikiInfoExtraction {
 	// 主函数
 	public static void main(String[] args) {
 		// 单个词分析
-		String keyword = "A-star_algorithm";
+		String keyword = "Binary_tree2";
 		test(keyword);
 
 		// 整体分析
-		realize();
+//		realize();
 	}
 
 }

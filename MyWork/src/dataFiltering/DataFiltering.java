@@ -11,7 +11,7 @@ package dataFiltering;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import dataFiltering.KeywordMatch;
+import dataFiltering.KeywordMatchNew;
 import base.DirFile;
 
 public class DataFiltering {
@@ -25,9 +25,12 @@ public class DataFiltering {
 	 * @param course
 	 */
 	public static void realize() throws Exception {
-		filtering("Computer_network");
-		filtering("Data_mining");
-		filtering("Data_structure");
+//		filtering("Computer_network");
+//		filtering("Data_mining");
+//		filtering("Data_structure");
+		filtering("Data_structure_excel112");
+//		filtering("Data_structure_excel59");
+//		filtering("Data_structure");
 	}
 	
 	/**
@@ -36,9 +39,9 @@ public class DataFiltering {
 	 * @param course
 	 */
 	public static void filtering(String course) throws Exception {
-		KeywordMatch k = new KeywordMatch();
+		KeywordMatchNew k = new KeywordMatchNew();
 		String catalog = "file/datacollection/" + course;
-		ArrayList<String> a = DirFile.getFileNamesFromDirectorybyArraylist(catalog);  //读取所有文件名
+		ArrayList<String> a = DirFile.getFolderFileNamesFromDirectorybyArraylist(catalog);  //读取所有文件名
 		Iterator<String> it = a.iterator();   //设置迭代器
 		while(it.hasNext()){                  //判断是否有下一个
 			long start = System.currentTimeMillis();

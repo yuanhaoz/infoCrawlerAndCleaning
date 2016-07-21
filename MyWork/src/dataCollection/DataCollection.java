@@ -87,7 +87,7 @@ public class DataCollection {
 	 */
 	public static String[] getQuestionURLs(String keyword) throws Exception {
 		String path = KeywordCatalogDesign.GetKeywordCatalog(keyword) + keyword + ".html";
-		System.out.println("路径为：" + path);
+//		System.out.println("路径为：" + path);
 		// System.out.println(path);
 		File file = new File(path);
 		if (!file.exists()) {
@@ -103,7 +103,7 @@ public class DataCollection {
 			for (int i = 0; i < links.size(); i++) {
 				Element link = links.get(i);
 				urls[i] = "http://www.quora.com" + link.attr("href"); // 将所有链接存到urls数组里面
-				System.out.println(String.format("问题页面链接为：" + " * " + (i + 1) + ": <%s>  (%s)", urls[i], link.text()));
+//				System.out.println(String.format("问题页面链接为：" + " * " + (i + 1) + ": <%s>  (%s)", urls[i], link.text()));
 			}
 			return urls;
 		}

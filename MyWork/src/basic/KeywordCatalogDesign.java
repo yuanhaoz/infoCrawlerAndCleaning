@@ -22,7 +22,7 @@ public class KeywordCatalogDesign {
 	 * 
 	 * @param course
 	 */
-	public static void setKeywordCatalog(String course) {
+	public static void setKeywordCatalog(String course){
 		String catalog = "file/datacollection/" + course + "/";
 		ArrayList<String> a = DirFile
 				.getFileNamesFromDirectorybyArraylist(catalog); // 读取所有文件名
@@ -48,11 +48,15 @@ public class KeywordCatalogDesign {
 	public static String GetKeywordCatalog(String keyword) {
 		String keywordcatalog = "";
 //		String[] course = { "Computer_network", "Data_mining", "Data_structure" };
-		String[] course = { "Data_structure3" };   //只有一门课程
+//		String[] course = { "Top10" };   //只有一门课程
+//		String[] course = { "test" };   //只有一门课程
+//		String[] course = { "Data_structure_excel112" };   //只有一门课程
+		String[] course = { "Data_structure_excel59" };   //只有一门课程
 //		String[] course = { "threadtest" };   //只有一门课程
 		for (int i = 0; i < course.length; i++) {
 			String catalog = "file/datacollection/" + course[i] + "/";
-			ArrayList<String> a = DirFile.getFileNamesFromDirectorybyArraylist(catalog); // 读取所有文件名
+			ArrayList<String> a = DirFile.getFolderFileNamesFromDirectorybyArraylist(catalog); // 读取所有文件名
+//			ArrayList<String> a = DirFile.getFileNamesFromDirectorybyArraylist(catalog); // 读取所有文件名
 			for (int j = 0; j < a.size(); j++) {
 				String testkeyword = a.get(j);
 //				System.out.println("关键词：" + keyword);

@@ -1,7 +1,7 @@
 ﻿package dataFiltering;
 
 /**
- * zhengyuanhao  2015/6/30
+ * zhengyuanhao  2016/2/20
  * 简单实现：quora  
  * 实现功能：数据预处理
  * 			1.关键词匹配
@@ -24,36 +24,36 @@ import jxl.write.WritableCellFormat;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
-public class KeywordMatch {
+public class KeywordMatchNew {
 
-	public static void main(String[] args) {
-		try {
-			long start = System.currentTimeMillis();
-			
-			KeywordMatch t = new KeywordMatch();
-//			t.filtering("Computer_network");
-//			t.filtering("Data_mining");
-//			t.filtering("Data_structure");
+//	public static void main(String[] args) {
+//		try {
+//			long start = System.currentTimeMillis();
 //			
-//			t.filtering("test");
-			
-			t.matchKeywordNotDelete("Binomial+distribution");
-			t.matchKeywordDelete("Binomial+distribution");
-			t.matchKeywordAndLength("Binomial+distribution");
-			
-			long end = System.currentTimeMillis();
-			System.out.println("总共耗时： " + (end - start) / 1000 + "秒...");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//			KeywordMatchNew t = new KeywordMatchNew();
+////			t.filtering("Computer_network");
+////			t.filtering("Data_mining");
+////			t.filtering("Data_structure");
+////			
+////			t.filtering("test");
+//			
+//			t.matchKeywordNotDelete("Binomial+distribution");
+//			t.matchKeywordDelete("Binomial+distribution");
+//			t.matchKeywordAndLength("Binomial+distribution");
+//			
+//			long end = System.currentTimeMillis();
+//			System.out.println("总共耗时： " + (end - start) / 1000 + "秒...");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	
 	/**
 	 * 根据关键词，处理所有Excel，匹配所有满足条件的
 	 */
 	public void filtering(String course) throws Exception {
-		KeywordMatch t = new KeywordMatch();
+		KeywordMatchNew t = new KeywordMatchNew();
 		File file0 = new File("file/datacollection/" + course);
 		File[] files = file0.listFiles();
 		for (int i = 0; i < files.length; i++) {
@@ -69,7 +69,7 @@ public class KeywordMatch {
 	}
 	
 	/**
-	 * 实现功能：1.处理excel表，问题和回答中只要有出现关键词，就将原Excel表中的第五列中的值 1 改为 0，
+	 * 实现功能：1.处理excel表，问题和回答中只要有出现关键词，就将原Excel表中的exist中的值 1 改为 0，
 	 * 			写到一张新的Excel表中
 	 * 			2.输入是信息抽取结果：-tag.xls
 	 *			3.输出是主题词匹配后列值改变结果：-tag_keywordnotdelete.xls
@@ -84,51 +84,69 @@ public class KeywordMatch {
 		Sheet rs = rwb.getSheet(0);              //得到excel表格
 		int rsRows = rs.getRows();
 		String[] keywordArray = keyword.split("\\+");      //将关键词以+分开存到数组里面，用于匹配文本
-		System.out.println("关键词的组成有： ");
-		for(int i = 0; i < keywordArray.length; i++){
-			System.out.println(keywordArray[i]);
-		}
-		WritableWorkbook workbook = Workbook.createWorkbook(new File(catalog + keyword + "-tag_keywordnotdelete.xls"));
+//		System.out.println("关键词的组成有： ");
+//		for(int i = 0; i < keywordArray.length; i++){
+//			System.out.println(keywordArray[i]);
+//		}
+		WritableWorkbook workbook = Workbook.createWorkbook(new File(catalog + keyword + "-tag_keywordnotdelete1.xls"));
 //		WritableWorkbook workbook = Workbook.createWorkbook(new File(catalog + keyword + "-tag_changed.xls"));
 		WritableSheet sheet = workbook.createSheet("标签", 0);     //准备新建的写的excel
+		WritableCellFormat wcf_center = ExcelSet.setCenterText();
 		for (int i = 0; i < rsRows; i++) {
 			//将原来的一到三列写到新Excel中，内容不变
 			sheet.setColumnView(0, 20);
 			sheet.setColumnView(1, 60);
-			WritableCellFormat wcf_center = ExcelSet.setCenterText();
 			for (int col = 0; col < 11; col++) {
 				sheet.setRowView(i, 1300, false);
 				sheet.addCell(new Label(col, i, rs.getCell(col, i).getContents(), wcf_center));
 			}
 			sheet.addCell(new Label(12, i, rs.getCell(12, i).getContents(), wcf_center));
+			sheet.addCell(new Label(18, i, rs.getCell(18, i).getContents(), wcf_center));
+			sheet.addCell(new Label(19, i, rs.getCell(19, i).getContents(), wcf_center));
+			sheet.addCell(new Label(20, i, rs.getCell(20, i).getContents(), wcf_center));
 			//处理第11列，检查文本片段是否与关键词相关
 			Cell cell = rs.getCell(1, i);
 			String content = cell.getContents();
 			int count = 0;
 			for (int j = 0; j < keywordArray.length; j++) {
 				// 在字符串中找关键词出现的次数
+				
+				// 出去关键词中的括号，即 ( 和  )
+				if(keywordArray[j].contains("(")){
+					keywordArray[j] = keywordArray[j].substring(1, keywordArray[j].length());
+				}
+				if(keywordArray[j].contains(")")){
+					keywordArray[j] = keywordArray[j].substring(0, keywordArray[j].length()-1);
+				}
+				// 匹配
 				Pattern p = Pattern.compile("(?i)" + keywordArray[j]);    //忽略大小写
 				Matcher m = p.matcher(content);
 				while (m.find()) {
 					count++;
 				}
 			}
-			System.out.println("关键词出现次数: " + count);
+//			System.out.println("关键词出现次数: " + count);
 			if (count == 0) {
 				if(i == 0){
 					sheet.addCell(new Label(11, i, rs.getCell(11, 0).getContents(), wcf_center));
 				}else{
 					sheet.addCell(new Label(11, i, "0", wcf_center));
-					System.out.println("第 " + i + " 个单元中没有出现关键词，与主题无关，将第五列标0...");
+//					System.out.println("第 " + i + " 个单元中没有出现关键词，与主题无关，将exist标0...");
 				}
 			} else {
 				sheet.addCell(new Label(11, i, "1", wcf_center));
-				System.out.println("第 " + i + " 个单元中出现关键词，第五列值不变...");
+//				System.out.println("第 " + i + " 个单元中出现关键词，exist值不变...");
 			}
+		}
+		
+		//第一行不变
+		for (int col = 0; col < 21; col++) {
+			sheet.setRowView(0, 1300, false);
+			sheet.addCell(new Label(col, 0, rs.getCell(col, 0).getContents(), wcf_center));
 		}
 		workbook.write();
 		workbook.close();
-		System.out.println(keyword + "处理完毕...\n");
+//		System.out.println(keyword + "处理完毕...\n");
 	}
 
 
@@ -149,12 +167,12 @@ public class KeywordMatch {
 //		int rsColumns = rs.getColumns();
 		int rsRows = rs.getRows();
 		String[] keywordArray = keyword.split("\\+");
-		System.out.println("关键词的组成有： ");
-		for(int i = 0; i < keywordArray.length; i++){
-			System.out.println(keywordArray[i]);
-		}
+//		System.out.println("关键词的组成有： ");
+//		for(int i = 0; i < keywordArray.length; i++){
+//			System.out.println(keywordArray[i]);
+//		}
 		WritableWorkbook workbook = Workbook.createWorkbook(new File(
-				catalog + keyword + "-tag_keyworddelete.xls"));
+				catalog + keyword + "-tag_keyworddelete2.xls"));
 //		WritableWorkbook workbook = Workbook.createWorkbook(new File(
 //				catalog + keyword + "-tag_changed1.xls"));
 		WritableSheet sheet = workbook.createSheet("标签", 0);
@@ -166,15 +184,24 @@ public class KeywordMatch {
 			int count = 0;
 			for (int j = 0; j < keywordArray.length; j++) {
 				// 在字符串中找关键词出现的次数
+				
+				// 出去关键词中的括号，即 ( 和  )
+				if(keywordArray[j].contains("(")){
+					keywordArray[j] = keywordArray[j].substring(1, keywordArray[j].length());
+				}
+				if(keywordArray[j].contains(")")){
+					keywordArray[j] = keywordArray[j].substring(0, keywordArray[j].length()-1);
+				}
+				// 匹配
 				Pattern p = Pattern.compile("(?i)" + keywordArray[j]);
 				Matcher m = p.matcher(content);
 				while (m.find()) {
 					count++;
 				}
 			}
-			System.out.println("出现次数: " + count);
+//			System.out.println("出现次数: " + count);
 			if (count == 0) {
-				System.out.println("第 " + i + " 个单元的文本中没有出现关键词，与主题无关，去除该文本...");
+//				System.out.println("第 " + i + " 个单元的文本中没有出现关键词，与主题无关，去除该文本...");
 			} else {
 				row++;
 				sheet.setColumnView(0, 20);
@@ -185,11 +212,14 @@ public class KeywordMatch {
 				}
 				sheet.addCell(new Label(11, row, rs.getCell(11, i).getContents(), wcf_center));
 				sheet.addCell(new Label(12, row, rs.getCell(12, i).getContents(), wcf_center));
+				sheet.addCell(new Label(18, row, rs.getCell(18, i).getContents(), wcf_center));
+				sheet.addCell(new Label(19, row, rs.getCell(19, i).getContents(), wcf_center));
+				sheet.addCell(new Label(20, row, rs.getCell(20, i).getContents(), wcf_center));
 			}
 		}
 		
 		//第一行不变
-		for (int col = 0; col < 13; col++) {
+		for (int col = 0; col < 21; col++) {
 			sheet.setRowView(0, 1300, false);
 			sheet.addCell(new Label(col, 0, rs.getCell(col, 0).getContents(), wcf_center));
 		}
@@ -205,7 +235,7 @@ public class KeywordMatch {
 	 */
 	public void matchKeywordAndLength(String keyword) throws Exception {
 		String catalog = KeywordCatalogDesign.GetKeywordCatalog(keyword);
-		String path = catalog + keyword + "-tag_keyworddelete.xls";
+		String path = catalog + keyword + "-tag_keyworddelete2.xls";
 //		String path = catalog + keyword + "-tag_changed1.xls";
 		File file = new File(path);
 		InputStream is = new FileInputStream(file);
@@ -214,14 +244,14 @@ public class KeywordMatch {
 //		int rsColumns = rs.getColumns();
 		int rsRows = rs.getRows();
 		String[] keywordArray = keyword.split("\\+");
-		System.out.println("关键词的组成有： ");
-		for(int i = 0; i < keywordArray.length; i++){
-			System.out.println(keywordArray[i]);
-		}
+//		System.out.println("关键词的组成有： ");
+//		for(int i = 0; i < keywordArray.length; i++){
+//			System.out.println(keywordArray[i]);
+//		}
 //		WritableWorkbook workbook = Workbook.createWorkbook(new File(
 //				catalog + keyword + "-tag_changed2.xls"));
 		WritableWorkbook workbook = Workbook.createWorkbook(new File(
-				catalog + keyword + "-tag_filtering.xls"));
+				catalog + keyword + "-tag_filtering3.xls"));
 		WritableSheet sheet = workbook.createSheet("标签", 0);
 		WritableCellFormat wcf_center = ExcelSet.setCenterText();
 		
@@ -237,16 +267,22 @@ public class KeywordMatch {
 				length = contents.length;
 			}
 			if (length > 500) {
-				System.out.println("第 " + i + " 个单元的文本单词长度大于500，去除该文本...");
+//				System.out.println("第 " + i + " 个单元的文本单词长度大于500，去除该文本...");
 			} else {
 				row++;
 				sheet.setColumnView(0, 20);
 				sheet.setColumnView(1, 60);
-				for (int col = 0; col < 13; col++) {
+				for (int col = 0; col < 21; col++) {
 					sheet.setRowView(row, 1300, false);
 					sheet.addCell(new Label(col, row, rs.getCell(col, i).getContents(), wcf_center));
 				}
 			}
+		}
+		
+		//第一行不变
+		for (int col = 0; col < 21; col++) {
+			sheet.setRowView(0, 1300, false);
+			sheet.addCell(new Label(col, 0, rs.getCell(col, 0).getContents(), wcf_center));
 		}
 		workbook.write();
 		workbook.close();
