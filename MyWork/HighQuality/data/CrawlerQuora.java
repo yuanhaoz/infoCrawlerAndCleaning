@@ -15,24 +15,34 @@ import basic.QuoraWebPage;
 public class CrawlerQuora {
 	
 	private static String cata = "02-CQA网站中问题答案质量评估";
-	private static String path =  "F:\\"+cata+"\\二叉树\\quora";
-	private static String pathQ =  "F:\\"+cata+"\\二叉树\\quora\\question";
-	private static String pathAuthor =  "F:\\"+cata+"\\二叉树\\quora\\question\\author";
-	private static String pathAuthorPage =  "F:\\"+cata+"\\二叉树\\quora\\question\\authorPage";
-	private static String keyword =  "Binary_tree";
+//	private static String path =  "F:\\"+cata+"\\二叉树\\quora";
+//	private static String pathQ =  "F:\\"+cata+"\\二叉树\\quora\\question";
+//	private static String pathAuthor =  "F:\\"+cata+"\\二叉树\\quora\\question\\author";
+//	private static String pathAuthorPage =  "F:\\"+cata+"\\二叉树\\quora\\question\\authorPage";
+//	private static String keyword =  "Binary_tree";
+	
+	private static String path =  "F:\\"+cata+"\\00-数据结构\\quora";
+	private static String pathQ =  "F:\\"+cata+"\\00-数据结构\\quora\\question";
+	private static String pathAuthor =  "F:\\"+cata+"\\00-数据结构\\quora\\question\\author";
+	private static String pathAuthorPage =  "F:\\"+cata+"\\00-数据结构\\quora\\question\\authorPage";
+	private static String keyword =  "Data_Structures";
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-//		crawlerQuora();
-		crawlerKeyword();
+		crawlerQuora();
+//		crawlerKeyword();
 	}
 	
 	/**
 	 * 爬取Quora二叉树话题页面所有问题
 	 */
 	public static void crawlerQuora(){
-		String filePath = path + "\\Binary_tree(selenium).html";
-		String url = "https://www.quora.com/topic/Binary-Trees/all_questions";
+//		String filePath = path + "\\Binary_tree(selenium).html";
+//		String url = "https://www.quora.com/topic/Binary-Trees/all_questions";
+		new File("F:\\"+cata+"\\00-数据结构").mkdir();
+		new File(path).mkdir();
+		String filePath = path + "\\Data_Structures(selenium).html";
+		String url = "https://www.quora.com/topic/Data-Structures";
 		try {
 			QuoraWebPage.seleniumCrawlerTopic(filePath, url);
 		} catch (Exception e) {
@@ -171,11 +181,11 @@ public class CrawlerQuora {
 					System.out.println(filePath + " is existing...");
 				} else {
 					//爬取问题网页
-//					QuoraWebPage.seleniumCrawlerQuestion(filePath, urls[n]);  
+					QuoraWebPage.seleniumCrawlerQuestion(filePath, urls[n]);  
 				}
 				//爬取作者页面
-//				storeAuthorURLs(keyword, n);
-				crawlerAPages(keyword, n);  
+				storeAuthorURLs(keyword, n);
+//				crawlerAPages(keyword, n);  
 			}
 		}
 	}

@@ -28,16 +28,18 @@ public class ExtractionQuora2 {
 	// 结果集
 	// private ResultSet rs;
 	private static String cata = "02-CQA网站中问题答案质量评估";
-	private static String path = "F:\\"+cata+"\\二叉树\\quora\\question";
-	private static String pathExcel = "F:\\"+cata+"\\二叉树\\quora\\question\\excel";
-	private static String pathAuthor = "F:\\"+cata+"\\二叉树\\quora\\question\\authorPage";
+	private static String path = "F:\\"+cata+"\\00-二叉树\\quora\\question";
+	private static String pathExcel = "F:\\"+cata+"\\00-二叉树\\quora\\question\\excel";
+	private static String pathAuthor = "F:\\"+cata+"\\00-二叉树\\quora\\question\\authorPage";
 	private static FeatureExtractionForSelenium extract = new FeatureExtractionForSelenium();
 	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 //		test_single();
 //		test1();
-		extract2Excel("Binary_tree",400);
+//		extract2Excel("Binary_tree",400);
+//		extract2ExcelAnalysis("Binary_tree",400);
+		extract2Excel_up_com_view("Binary_tree",400);
 //		extract2mysql("Binary_tree", 400, "Binary_tree");
 	}
 	
@@ -45,25 +47,26 @@ public class ExtractionQuora2 {
 		String filePath = path + "\\Binary_tree0.html";
 		Document doc = JsoupParse.parsePathText(filePath);
 		int n = extract.countRealAnswerNumber2(doc);
-		extract.questionContent(doc);
-		extract.questionExpandInfo(doc);
-		extract.questionWantAnswers(doc);
-		extract.questionCommentNumbers(doc);
+//		extract.questionContent(doc);
+//		extract.questionExpandInfo(doc);
+//		extract.questionWantAnswers(doc);
+//		extract.questionCommentNumbers(doc);
+		extract.questionViews(doc);
 		for(int j = 0; j < n; j++){
-			
-			extract.answerContent(doc, j);
-			extract.answerUpvotes(doc, j);
-			extract.answerCommentNumbers(doc, j);
+//			extract.answerViews(doc, j);
+//			extract.answerContent(doc, j);
+//			extract.answerUpvotes(doc, j);
+//			extract.answerCommentNumbers(doc, j);
 			
 			
 		}
-		String authorpath = pathAuthor + "\\Binary_tree0_author_0.html";
+//		String authorpath = pathAuthor + "\\Binary_tree0_author_0.html";
 //		String authorpath = pathAuthor + "\\Binary_tree0_author_1.html";
 //		String authorpath = pathAuthor + "\\Binary_tree0_author_2.html";
 //		String authorpath = pathAuthor + "\\Binary_tree0_author_3.html";
-		Document authorDoc = JsoupParse.parsePathText(authorpath);
-		FeatureExtractionForSelenium.authorPosts(authorDoc, 0);
-		FeatureExtractionForSelenium.authorEdits(authorDoc, 0);
+//		Document authorDoc = JsoupParse.parsePathText(authorpath);
+//		FeatureExtractionForSelenium.authorPosts(authorDoc, 0);
+//		FeatureExtractionForSelenium.authorEdits(authorDoc, 0);
 	}
 	
 	public static void test_all() throws Exception{
@@ -268,9 +271,7 @@ public class ExtractionQuora2 {
 			String filePath = path + "\\" + keyword + i + ".html";
 			File file = new File(filePath);
 			if (!file.exists()) {
-//				System.out.println(path + "  不存在");
-			} else {
-				
+
 				//开始解析问题页面，将问题的有关信息填入表格之中
 //				System.out.println("开始解析： " + path);
 				Document doc = JsoupParse.parsePathText(filePath);
@@ -375,6 +376,128 @@ public class ExtractionQuora2 {
 		}
 		ExcelSet.close(workbook);  //关闭工作空间
 	}
+	
+	public static void extract2Excel_upvote_comment(String keyword, int pageLength) throws Exception {
+		//建立保存目录
+		new File(pathExcel).mkdir();
+		String filepath = pathExcel + "\\" + keyword + "_Analysis.xls";
+		WritableWorkbook workbook = Workbook.createWorkbook(new File(filepath));
+		WritableSheet sheet = workbook.createSheet("信息抽取", 0);
+		initalTitleAnalysis(sheet);
+		WritableCellFormat wcf_center = ExcelSet.setCenterText();   //设置单元格正文格式
+		
+		//存放信息
+		int number = 1;
+		for (int i = 0; i < pageLength; i++) {
+			String filePath = path + "\\" + keyword + i + ".html";
+			File file = new File(filePath);
+			if (file.exists()) {
+
+				//开始解析问题页面，将问题的有关信息填入表格之中
+				Document doc = JsoupParse.parsePathText(filePath);
+				ArrayList<String> titlelist = new ArrayList<String>();
+				titlelist.add(keyword + i);
+				titlelist.add(FeatureExtractionForSelenium.questionWantAnswers(doc));
+				titlelist.add(FeatureExtractionForSelenium.questionCommentNumbersReal(doc));
+				for(int j = 0; j < 3; j++){
+					sheet.addCell(new Label(j, number, titlelist.get(j), wcf_center));
+				}
+				
+				sheet.setRowView(number, 700, false); // 设置行高
+				sheet.setColumnView(0, 20);
+				sheet.setColumnView(1, 20);
+				sheet.setColumnView(2, 20);
+				
+				//将问题下的回答和作者的信息填入表中
+				int realanswernumber = FeatureExtractionForSelenium.countRealAnswerNumber2(doc);
+				for (int m = number; m < number + realanswernumber; m++) {
+					
+					sheet.setRowView(m + 1, 700, false);// 设置行高
+					String upvote = FeatureExtractionForSelenium.answerUpvotes(doc, m - number);              // 支持票数 
+					String comment = FeatureExtractionForSelenium.answerCommentNumbersReal(doc, m - number);// 评论数量
+					
+					sheet.addCell(new Label(0, m + 1, keyword + i + "_" + (m - number) + " ",wcf_center));
+					sheet.addCell(new Label(1, m + 1, upvote, wcf_center));
+					sheet.addCell(new Label(2, m + 1, comment, wcf_center));
+					
+				}
+				sheet.addCell(new Label(0, number + realanswernumber + 1, "", wcf_center));
+				sheet.addCell(new Label(1, number + realanswernumber + 1, "", wcf_center));
+				sheet.addCell(new Label(2, number + realanswernumber + 1, "", wcf_center));
+				sheet.setRowView(number + realanswernumber + 1, 700, false);// 设置行高
+				
+				number = number + realanswernumber + 2;
+			}
+//			System.out.println(path + " 已经成功解析到 " + catalog + keyword + "-tag.xls");
+		}
+		ExcelSet.close(workbook);  //关闭工作空间
+	}
+	
+	public static void extract2Excel_up_com_view(String keyword, int pageLength) throws Exception {
+		//建立保存目录
+		new File(pathExcel).mkdir();
+		String filepath = pathExcel + "\\" + keyword + "_up_com_view.xls";
+		WritableWorkbook workbook = Workbook.createWorkbook(new File(filepath));
+		WritableSheet sheet = workbook.createSheet("信息抽取", 0);
+		WritableCellFormat wcf_title = ExcelSet.setTitleText();
+		sheet.addCell(new Label(0, 0, "QA", wcf_title));
+		sheet.addCell(new Label(1, 0, "Upvote", wcf_title));
+		sheet.addCell(new Label(2, 0, "Comment", wcf_title));
+		sheet.addCell(new Label(3, 0, "View", wcf_title));
+		sheet.setRowView(0, 700, false);
+		WritableCellFormat wcf_center = ExcelSet.setCenterText();
+		
+		//存放信息
+		int number = 1;
+		for (int i = 0; i < pageLength; i++) {
+			String filePath = path + "\\" + keyword + i + ".html";
+			File file = new File(filePath);
+			if (file.exists()) {
+
+				//开始解析问题页面，将问题的有关信息填入表格之中
+				Document doc = JsoupParse.parsePathText(filePath);
+				ArrayList<String> titlelist = new ArrayList<String>();
+				titlelist.add(keyword + i);
+				titlelist.add(FeatureExtractionForSelenium.questionWantAnswers(doc));
+				titlelist.add(FeatureExtractionForSelenium.questionCommentNumbersReal(doc));
+				titlelist.add(FeatureExtractionForSelenium.questionViews(doc));
+				for(int j = 0; j < 4; j++){
+					sheet.addCell(new Label(j, number, titlelist.get(j), wcf_center));
+				}
+				
+				sheet.setRowView(number, 700, false); // 设置行高
+				sheet.setColumnView(0, 20);
+				sheet.setColumnView(1, 20);
+				sheet.setColumnView(2, 20);
+				sheet.setColumnView(3, 20);
+				
+				//将问题下的回答和作者的信息填入表中
+				int realanswernumber = FeatureExtractionForSelenium.countRealAnswerNumber2(doc);
+				for (int m = number; m < number + realanswernumber; m++) {
+					
+					sheet.setRowView(m + 1, 700, false);// 设置行高
+					String upvote = FeatureExtractionForSelenium.answerUpvotes(doc, m - number);              // 支持票数 
+					String comment = FeatureExtractionForSelenium.answerCommentNumbersReal(doc, m - number);// 评论数量
+					String view = FeatureExtractionForSelenium.answerViews(doc, m - number);// 评论数量
+					
+					sheet.addCell(new Label(0, m + 1, keyword + i + "_" + (m - number) + " ",wcf_center));
+					sheet.addCell(new Label(1, m + 1, upvote, wcf_center));
+					sheet.addCell(new Label(2, m + 1, comment, wcf_center));
+					sheet.addCell(new Label(3, m + 1, view, wcf_center));
+					
+				}
+				sheet.addCell(new Label(0, number + realanswernumber + 1, "", wcf_center));
+				sheet.addCell(new Label(1, number + realanswernumber + 1, "", wcf_center));
+				sheet.addCell(new Label(2, number + realanswernumber + 1, "", wcf_center));
+				sheet.addCell(new Label(3, number + realanswernumber + 1, "", wcf_center));
+				sheet.setRowView(number + realanswernumber + 1, 700, false);// 设置行高
+				
+				number = number + realanswernumber + 2;
+			}
+//			System.out.println(path + " 已经成功解析到 " + catalog + keyword + "-tag.xls");
+		}
+		ExcelSet.close(workbook);  //关闭工作空间
+	}
 
 	/**
 	 * 实现功能：建立工作表，输入是表格存储路径filepath，输出是表格对象WritableSheet
@@ -413,6 +536,14 @@ public class ExtractionQuora2 {
 		sheet.addCell(new Label(21, 0, "AuthorPosts", wcf_title));
 		sheet.addCell(new Label(22, 0, "AuthorEdits", wcf_title));
 		
+		sheet.setRowView(0, 700, false);                         // 设置行高
+	}
+	
+	public static void initalTitleAnalysis(WritableSheet sheet) throws Exception {
+		WritableCellFormat wcf_title = ExcelSet.setTitleText();   //设置单元格正文格式
+		sheet.addCell(new Label(0, 0, "QA", wcf_title));
+		sheet.addCell(new Label(1, 0, "Upvote", wcf_title));
+		sheet.addCell(new Label(2, 0, "Comment", wcf_title));
 		sheet.setRowView(0, 700, false);                         // 设置行高
 	}
 

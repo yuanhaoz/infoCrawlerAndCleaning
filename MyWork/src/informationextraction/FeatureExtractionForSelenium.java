@@ -207,12 +207,44 @@ public class FeatureExtractionForSelenium {
 		}
 		
 	}
+	
+	/**
+	 * 实现功能：解析问题是否评论，返回Boolen变量0或1
+	 * 解析对象：问题网页
+	 * 解析标签形式：
+	 * @param doc
+	 */
+	public static String questionCommentNumbersReal(Document doc) {
+		Elements questions = doc.select("div.header").select("div.action_item");
+		if(questions.size() !=0 ){
+			Element question = questions.get(1);
+			Elements comment = question.select("div[id]").select("a[class]");
+			if (comment.size() == 0) {
+//				System.out.println("问题不存在评论栏目...");
+				return "0";
+			} else {
+				Elements b = comment.select("span[class]");
+				if (b.size() == 0) {
+//					System.out.println("问题不存在评论！！！");
+					return "0";
+				} else {
+					String comment_number = b.text();
+//					System.out.println("问题评论数目为：" + comment_number);
+					return comment_number;
+				}
+			}
+		} else {
+//			System.out.println("不存在评论选项...");
+			return "";
+		}
+		
+	}
 
 	/**
 	 * 实现功能：解析与问题相关的话题，返回相关话题 string
 	 * 解析对象：问题网页
 	 * 解析标签形式：
-	 * @param doc,n
+	 * @param doc
 	 */
 	public static String questionTopics(Document doc) {
 		Element topics = doc.select("div.QuestionArea").get(0);
@@ -224,6 +256,23 @@ public class FeatureExtractionForSelenium {
 		}
 //		System.out.println(related_topics_s);
 		return related_topics_s;
+	}
+	
+	/**
+	 * 实现功能：解析问题的浏览数目Views
+	 * 解析对象：问题网页（第n条回答）
+	 * 解析标签形式：
+	 * @param doc
+	 */
+	public static String questionViews(Document doc) {
+		String view = "";
+		Elements view_numbers = doc.select("div[class$=Stats]").select("div[class$=ViewsRow]");
+		if(view_numbers.size() != 0){
+			view = view_numbers.text();
+			view = view.substring(0, view.indexOf(" Views"));
+//			System.out.println("问题的浏览数目是：" + view);
+		}
+		return view;
 	}
 
 	/**
@@ -328,6 +377,62 @@ public class FeatureExtractionForSelenium {
 			}
 		}
 		}else{
+			return "";
+		}
+	}
+	
+	/**
+	 * 实现功能：解析答案是否评论，返回是评论的真实数目
+	 * 解析对象：问题网页（第n条回答）
+	 * 解析标签形式：
+	 * @param doc,n
+	 */
+	public static String answerCommentNumbersReal(Document doc, int n) {
+		Elements comment_numbers = doc.select("div.pagedlist_item")
+				.select("div[class^=action_bar]").select("div[class^=action_it]");
+		if(comment_numbers.size()!=0){
+			Element per_answer = comment_numbers.get(2*n);
+			Elements comment = per_answer.select("span[id]").select("a[class^=view_comments]");
+			if (comment.size() != 0) {
+				Elements b = comment.select("span[class]");
+				if (b.size() != 0) {
+					String comment_number = b.text();
+//					System.out.println("答案" + n + "的评论数目为：" + comment_number);
+					return comment_number;
+				} else {
+//					System.out.println("答案" + n + "评论为0。。。");
+					return "0";					
+				}
+			} else {
+//				System.out.println("答案" + n + "不存在Comment选项！！！");
+				return "0";				
+			}
+		}else{
+			return "";
+		}
+	}
+	
+	/**
+	 * 实现功能：解析答案的浏览数目，返回浏览数目
+	 * 解析对象：问题网页（第n条回答）
+	 * 解析标签形式：
+	 * @param doc,n
+	 */
+	public static String answerViews(Document doc, int n) {
+		Elements view_numbers = doc.select("div.pagedlist_item")
+				.select("div[class^=Credibility]");
+		if(view_numbers.size()!=0){
+			Element per_answer = view_numbers.get(2*n);
+			Elements comment = per_answer.select("span[class^=meta_num]");
+			if (comment.size() != 0) {
+				String view_number = comment.get(0).text();
+//				System.out.println("答案" + n + "的浏览数目为：" + view_number);
+				return view_number;
+			} else {
+//				System.out.println("答案" + n + "不存在View选项！！！");
+				return "0";				
+			}
+		} else {
 			return "";
 		}
 	}
